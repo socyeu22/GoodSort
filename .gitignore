@@ -73,3 +73,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /GoodSort/Library/
+GoodSort/Logs/
+GoodSort/Temp/
+GoodSort/obj/
+GoodSort/.idea/
+.idea/
+GoodSort/UserSettings/
