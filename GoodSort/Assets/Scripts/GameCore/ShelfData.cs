@@ -9,5 +9,5 @@ public class ShelfData
 {
     public ShelfType shelfType;
     public Vector2Int position;
-    public List<int> listItemID;
+    public List<List<int>> listsItemID;
 }

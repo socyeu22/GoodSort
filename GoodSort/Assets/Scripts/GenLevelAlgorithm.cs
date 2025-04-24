@@ -88,6 +88,27 @@ namespace DefaultNamespace
             // --- 3. Finalization ---
             finalNumberOfLayers = numberOfLayers; // Lưu số lớp cuối cùng
             Debug.Log($"Level generation successful! Final number of layers: {finalNumberOfLayers}");
+            
+            // Loop Through Generate Board - Convert to ShelfData
+            var indexGenerateBoard = 0;
+            for (int i = 0; i < boardSize.x; i++)
+            {
+                for (int j = 0; j < boardSize.y; j++)
+                {
+                    if(boardData[i, j].shelfType == ShelfType.Empty) continue;
+                    for (int h = 0; h < 3; h++)
+                    {
+                        var lstItem = new List<int>();
+                        for (int k = 0; k < numberOfLayers; k++)
+                        {
+                            lstItem.Add(generatedBoard[indexGenerateBoard + h, k]);
+                        }
+                        boardData[i, j].listsItemID.Add(lstItem);
+                    }
+                    indexGenerateBoard += 3;
+                }
+            }
+            
             return true;
         }
 
@@ -298,7 +319,7 @@ namespace DefaultNamespace
                      }
                  }
              }
-             return count;
+             return count * 3;
         }
 
         /// <summary>
@@ -314,6 +335,7 @@ namespace DefaultNamespace
             int layers = (avgItemsPerLayer > 0.01f)
                 ? (int)Math.Ceiling((float)totalItems / avgItemsPerLayer)
                 : totalItems;
+            layers *= 3;
             return Math.Max(1, layers);
         }
 
@@ -328,12 +350,12 @@ namespace DefaultNamespace
 
             if (minLayerPlaced != -1 && depthValue >= 0)
             {
-                lowerBound = Math.Max(0, minLayerPlaced - (depthValue * 3));
-                upperBound = Math.Min(currentNumberOfLayers, maxLayerPlaced + (depthValue * 3) + 1);
+                lowerBound = Math.Max(0, minLayerPlaced - (depthValue));
+                upperBound = Math.Min(currentNumberOfLayers, maxLayerPlaced + (depthValue) + 1);
             }
 
             // Đảm bảo lower <= upper
-            if (upperBound <= lowerBound)
+            if (upperBound < lowerBound)
             {
                 // Nếu khoảng không hợp lệ (ví dụ depth=0 và min/max đã khác nhau),
                 // hoặc khoảng cách quá lớn, mở rộng ra toàn bộ để tránh lỗi

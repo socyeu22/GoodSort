@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
@@ -28,8 +29,9 @@ public class LevelData : ScriptableObject
             {
                 boardData[i, j] = new ShelfData()
                 {
-                    listItemID = new List<int>(),
-                    shelfType = ShelfType.Normal
+                    listsItemID = new List<List<int>>(),
+                    shelfType = ShelfType.Normal,
+                    position = new Vector2Int(i, j)
                 };
             }
         }
@@ -48,34 +50,24 @@ public class LevelData : ScriptableObject
         }
 
         // Initialize list if null
-        if (value.listItemID == null)
-        {
-            value.listItemID = new List<int>();
-        }
 
         // Draw a simplified representation of the list in the cell
         // Since a list can be long, we'll show the count and allow editing one ID at a time
-        Rect countRect = new Rect(rect.x, rect.y, rect.width * 0.5f, rect.height);
-        Rect idRect = new Rect(rect.x + rect.width * 0.5f, rect.y, rect.width * 0.5f, rect.height);
+        Rect countRect = new Rect(rect.x, rect.y, rect.width, rect.height);
 
 
         string data = "";
-        for (int i = 0; i < value.listItemID.Count; i++)
+        for (int i = 0; i < value.listsItemID.Count; i++)
         {
-            data += (" " + value.listItemID[i].ToString());
-            Debug.Log(data);
+            data += "{";
+            for (int j = 0; j < value.listsItemID[i].Count; j++)
+            {
+                data += (" " + value.listsItemID[i][j]);
+            }
+
+            data += "}";
         }
-        // Display list count
         EditorGUI.LabelField(countRect, data);
-
-        // Allow adding/editing an ID
-        int newId = EditorGUI.IntField(idRect, 0);
-
-        // Add the new ID to the list if it's non-zero and user presses Enter or changes focus
-        if (newId != 0 && GUI.changed)
-        {
-            value.listItemID.Add(newId);
-        }
 
         return value;
     }
