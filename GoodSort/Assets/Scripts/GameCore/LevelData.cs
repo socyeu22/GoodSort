@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
+using GameCore;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEditor;
@@ -11,11 +13,30 @@ public class LevelData : ScriptableObject
     public Vector2Int size;
     [OdinSerialize, SerializeReference, TableMatrix (DrawElementMethod = "DrawBoard")] public ShelfData [,] boardData;
 
+    [OdinSerialize, SerializeReference] public Dictionary<int, int> amountPairEachItem;
+    public float percentCoverLayer;
+    public int depth;
 
     [Button] 
     public void CreateBoard()
     {
         boardData = new ShelfData[size.x, size.y];
+
+        for (int i = 0; i < size.x; i++)
+        {
+            for (int j = 0; j < size.y; j++)
+            {
+                boardData[i, j] = new ShelfData()
+                {
+                    listItemID = new List<int>(),
+                    shelfType = ShelfType.Normal
+                };
+            }
+        }
+        
+        var genLevelAlgorithm = new GenLevelAlgorithm(size, boardData, amountPairEachItem, percentCoverLayer, depth);
+        var result = genLevelAlgorithm.GenLevel();
+        Debug.Log($"Result Algorithm : {result}");
     }
 
     private static ShelfData DrawBoard(Rect rect, ShelfData value)
@@ -55,15 +76,6 @@ public class LevelData : ScriptableObject
         {
             value.listItemID.Add(newId);
         }
-
-        // Optional: Add a button to clear the list (if needed)
-        /*
-        Rect buttonRect = new Rect(rect.x, rect.y + rect.height - 20, rect.width, 20);
-        if (GUI.Button(buttonRect, "Clear List"))
-        {
-            value.listItemID.Clear();
-        }
-        */
 
         return value;
     }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Data;
 using UnityEngine;
 
 namespace GameCore
@@ -41,13 +40,6 @@ namespace GameCore
         {
             
         }
-    }
-
-    public class ShelfData
-    {
-        public ShelfType shelfType;
-        public Vector2Int position;
-        public Stack<int> shelfStack;
     }
 
     public enum ShelfType
