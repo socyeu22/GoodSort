@@ -9,377 +9,360 @@ namespace DefaultNamespace
     public class GenLevelAlgorithm
     {
         // --- Input Fields ---
-        public Vector2Int boardSize;
-        public ShelfData[,] boardData;
-        public Dictionary<int, int> amountPairEachItem;
-        public float percentCoverLayer;
-        public int depth;
+        private readonly Vector2Int boardSize;
+        private readonly ShelfData[,] originalBoardData;
+        private readonly Dictionary<int, int> amountPairEachItem;
+        private readonly float percentCoverLayer;
+        private readonly int depth;
 
-        // --- Output Fields ---
-        public int[,] generatedBoard { get; private set; }
+        // --- Output Field ---
         public int finalNumberOfLayers { get; private set; }
 
         // --- Private Fields ---
         private System.Random rand = new System.Random();
+        private int[,] placementBoard;
         private const int MAX_PLACEMENT_ATTEMPTS_PER_ITEM = 500;
-        private const int MAX_PLACEMENT_ATTEMPTS_GLOBAL = 1000;
-        private const int MAX_EXPANSION_CYCLES = 15;
+        private const int MAX_EXPANSION_CYCLES = 25; // Tăng nhẹ phòng trường hợp depth quá chặt
 
-        public GenLevelAlgorithm(Vector2Int boardSize, ShelfData[,] boardData, Dictionary<int, int> amountPairEachItem, float percentCoverLayer, int depth)
+        public GenLevelAlgorithm(Vector2Int boardSize, ShelfData[,] originalBoardData, Dictionary<int, int> amountPairEachItem, float percentCoverLayer, int depth)
         {
             this.boardSize = boardSize;
-            this.boardData = boardData;
+            this.originalBoardData = originalBoardData;
             this.amountPairEachItem = amountPairEachItem;
             this.percentCoverLayer = percentCoverLayer;
-            this.depth = depth;
+            // Đảm bảo depth hợp lệ (ít nhất là 0)
+            this.depth = Math.Max(0, depth);
         }
 
         // ========================================================================
         // Main Public Method
         // ========================================================================
-
-        /// <summary>
-        /// Hàm chính để tạo dữ liệu level. Điều phối các bước chính.
-        /// </summary>
-        /// <returns>True nếu tạo thành công, False nếu có lỗi.</returns>
-        public bool GenLevel()
+        public ShelfData[,] GenLevel()
         {
-            // --- 1. Validation & Initial Setup ---
-            if (!ValidateInput()) return false;
+            if (!ValidateInput()) return null;
 
             int slotsPerLayer = GetSlotsPerLayer();
             if (slotsPerLayer <= 0)
             {
-                Debug.LogError("Không có vị trí kệ hợp lệ nào (slotsPerLayer <= 0).");
-                return false;
+                Debug.LogError("GenLevelAlgorithm Error: No valid placement slots found (slotsPerLayer <= 0).");
+                return null;
             }
 
-            // Xử lý trường hợp không yêu cầu item nào
             if (amountPairEachItem == null || amountPairEachItem.Count == 0)
             {
-                return CreateEmptyBoard(slotsPerLayer);
+                Debug.LogWarning("GenLevelAlgorithm Info: amountPairEachItem is null or empty. Creating an empty board.");
+                return CreateEmptyFinalBoard(slotsPerLayer);
             }
 
             int amountItems = amountPairEachItem.Sum(pair => pair.Value * 3);
-            int numberOfLayers = CalculateInitialLayers(slotsPerLayer, amountItems, percentCoverLayer);
+            int currentNumberOfLayers = CalculateInitialLayers(slotsPerLayer, amountItems, percentCoverLayer);
+            finalNumberOfLayers = currentNumberOfLayers;
 
-            Debug.Log($"Initial Calculation: Slots Per Layer={slotsPerLayer}, Initial Layers={numberOfLayers}. Total Items={amountItems}");
+            Debug.Log($"GenLevelAlgorithm Info: Initial Calculation - Slots Per Layer={slotsPerLayer}, Initial Layers={currentNumberOfLayers}, Total Items={amountItems}");
 
-            generatedBoard = new int[slotsPerLayer, numberOfLayers];
-            InitializeBoard(generatedBoard, -1); // Khởi tạo với -1
+            placementBoard = new int[slotsPerLayer, currentNumberOfLayers];
+            InitializeBoard(placementBoard, -1);
 
             var cloneAmountPair = amountPairEachItem.ToDictionary(entry => entry.Key, entry => entry.Value);
 
-            // --- 2. Placement Loop ---
             foreach (var itemIDPair in cloneAmountPair)
             {
                 int itemID = itemIDPair.Key;
                 int itemsToPlace = itemIDPair.Value * 3;
-
-                // Gọi hàm xử lý đặt tất cả item của loại này
-                bool success = PlaceAllItemsOfType(itemID, itemsToPlace, slotsPerLayer, ref numberOfLayers);
+                bool success = PlaceAllItemsOfType(itemID, itemsToPlace, slotsPerLayer, ref currentNumberOfLayers);
                 if (!success)
                 {
-                    // Lỗi đã được log bên trong, dừng quá trình tạo
-                    return false;
+                    return null;
                 }
             }
 
-            // --- 3. Finalization ---
-            finalNumberOfLayers = numberOfLayers; // Lưu số lớp cuối cùng
-            Debug.Log($"Level generation successful! Final number of layers: {finalNumberOfLayers}");
-            
-            // Loop Through Generate Board - Convert to ShelfData
-            var indexGenerateBoard = 0;
-            for (int i = 0; i < boardSize.x; i++)
-            {
-                for (int j = 0; j < boardSize.y; j++)
-                {
-                    if(boardData[i, j].shelfType == ShelfType.Empty) continue;
-                    for (int h = 0; h < 3; h++)
-                    {
-                        var lstItem = new List<int>();
-                        for (int k = 0; k < numberOfLayers; k++)
-                        {
-                            lstItem.Add(generatedBoard[indexGenerateBoard + h, k]);
-                        }
-                        boardData[i, j].listsItemID.Add(lstItem);
-                    }
-                    indexGenerateBoard += 3;
-                }
-            }
-            
-            return true;
+            finalNumberOfLayers = currentNumberOfLayers;
+            Debug.Log($"GenLevelAlgorithm Info: Placement successful! Final number of layers: {finalNumberOfLayers}");
+            ShelfData[,] finalBoardData = CreateAndMapFinalBoard(slotsPerLayer, finalNumberOfLayers);
+            return finalBoardData;
         }
 
         // ========================================================================
         // Core Placement Logic Methods
         // ========================================================================
-
-        /// <summary>
-        /// Quản lý việc đặt tất cả các vật phẩm cho một itemID cụ thể.
-        /// </summary>
         private bool PlaceAllItemsOfType(int itemID, int itemsToPlace, int slotsPerLayer, ref int currentNumberOfLayers)
         {
-            int minLayerPlaced = -1; // Theo dõi min/max layer cho riêng loại item này
+            int minLayerPlaced = -1;
             int maxLayerPlaced = -1;
-
             for (int i = 0; i < itemsToPlace; i++)
             {
-                // Gọi hàm cố gắng đặt một item, có xử lý mở rộng
-                bool placed = AttemptPlaceSingleItemWithExpansion(itemID, slotsPerLayer, ref currentNumberOfLayers, ref minLayerPlaced, ref maxLayerPlaced);
+                bool placed = AttemptPlaceSingleItemStrictDepth(itemID, slotsPerLayer, ref currentNumberOfLayers, ref minLayerPlaced, ref maxLayerPlaced);
                 if (!placed)
                 {
-                    Debug.LogError($"Failed to place item {itemID} (instance {i + 1}/{itemsToPlace}) even after expansions. Aborting.");
-                    return false; // Không thể đặt được item này -> dừng
+                    return false;
                 }
             }
-            return true; // Đặt thành công tất cả item của loại này
+            return true;
         }
 
-        /// <summary>
-        /// Cố gắng đặt một vật phẩm đơn lẻ, thực hiện mở rộng bảng nếu cần thiết.
-        /// Quản lý vòng lặp thử/mở rộng.
-        /// </summary>
-        private bool AttemptPlaceSingleItemWithExpansion(int itemID, int slotsPerLayer, ref int currentNumberOfLayers, ref int minLayerPlaced, ref int maxLayerPlaced)
+        private bool AttemptPlaceSingleItemStrictDepth(int itemID, int slotsPerLayer, ref int currentNumberOfLayers, ref int minLayerPlaced, ref int maxLayerPlaced)
         {
             int expansionCycle = 0;
-
             while (expansionCycle < MAX_EXPANSION_CYCLES)
             {
                 expansionCycle++;
+                // 1. Tính khoảng layer hợp lệ (SỬ DỤNG LOGIC MỚI)
+                var (lowerBound, upperBound) = CalculatePlacementBoundsStrict(currentNumberOfLayers, minLayerPlaced, maxLayerPlaced, depth);
 
-                // Tính toán khoảng layer hợp lệ cho lần thử này
-                var (lowerBound, upperBound) = CalculatePlacementBounds(currentNumberOfLayers, minLayerPlaced, maxLayerPlaced, depth);
-
-                // Thử đặt trong khoảng giới hạn
+                // 2. Chỉ thử đặt trong khoảng giới hạn
                 var (placedInBounds, layerPlacedInBounds) = TryPlaceInBounds(itemID, slotsPerLayer, lowerBound, upperBound);
                 if (placedInBounds)
                 {
                     UpdateMinMaxLayers(layerPlacedInBounds, ref minLayerPlaced, ref maxLayerPlaced);
-                    return true; // Thành công
+                    return true; // Thành công!
                 }
 
-                // Thử đặt toàn cục
-                var (placedGlobally, layerPlacedGlobally) = TryPlaceGlobally(itemID, slotsPerLayer, currentNumberOfLayers);
-                if (placedGlobally)
-                {
-                    UpdateMinMaxLayers(layerPlacedGlobally, ref minLayerPlaced, ref maxLayerPlaced);
-                     Debug.LogWarning($"Placed item {itemID} globally [Layer:{layerPlacedGlobally}] after failing in bounds.");
-                    return true; // Thành công
-                }
-
-                // Nếu không đặt được -> Bảng đầy -> Mở rộng
-                 Debug.LogWarning($"Board full trying to place item {itemID}. Expanding layers from {currentNumberOfLayers} to {currentNumberOfLayers + 1}.");
-                 ExpandBoard(slotsPerLayer, ref currentNumberOfLayers);
-                 Debug.Log($"Board expanded. Retrying placement for item {itemID}.");
-
-                 // Vòng lặp while sẽ chạy lại với bảng đã mở rộng
+                // 3. Nếu không đặt được trong bounds -> Mở rộng bảng NGAY LẬP TỨC
+                Debug.LogWarning($"GenLevelAlgorithm Warning: Cannot place item {itemID} within strict bounds [{lowerBound},{upperBound}). Expanding layers from {currentNumberOfLayers} to {currentNumberOfLayers + 1}. (Cycle {expansionCycle}/{MAX_EXPANSION_CYCLES})");
+                ExpandPlacementBoard(slotsPerLayer, ref currentNumberOfLayers);
+                // Quan trọng: Sau khi mở rộng, min/max layer cũ vẫn giữ nguyên,
+                // nhưng currentNumberOfLayers đã tăng, CalculatePlacementBoundsStrict sẽ tính lại ở vòng lặp sau.
+                Debug.Log($"GenLevelAlgorithm Info: Board expanded. Retrying placement for item {itemID}.");
             }
 
-            // Nếu chạy hết số lần mở rộng mà vẫn không đặt được
-            Debug.LogError($"Failed to place item {itemID} after {MAX_EXPANSION_CYCLES} expansion cycles. Aborting.");
+            Debug.LogError($"GenLevelAlgorithm Error: Failed to place item {itemID} after {MAX_EXPANSION_CYCLES} expansion cycles while strictly enforcing depth. The board might be too constrained or an unexpected error occurred.");
             return false;
         }
 
-        /// <summary>
-        /// Thử tìm và đặt item trong khoảng layer giới hạn.
-        /// </summary>
-        /// <returns>Tuple (bool success, int layerIndex) </returns>
         private (bool, int) TryPlaceInBounds(int itemID, int slotsPerLayer, int lowerBoundLayer, int upperBoundLayer)
         {
-            if (upperBoundLayer <= lowerBoundLayer) return (false, -1); // Khoảng không hợp lệ
+            // Kiểm tra nếu khoảng không hợp lệ (ví dụ: khi depth=0 và min!=max làm upperBound<=lowerBound)
+            if (upperBoundLayer <= lowerBoundLayer)
+            {
+                 // Trong trường hợp này, không có vị trí hợp lệ nào theo ràng buộc depth
+                 // Trả về false để kích hoạt mở rộng bảng
+                return (false, -1);
+            }
 
             for (int attempt = 0; attempt < MAX_PLACEMENT_ATTEMPTS_PER_ITEM; attempt++)
             {
                 int slotIdx = rand.Next(0, slotsPerLayer);
-                int layerIdx = rand.Next(lowerBoundLayer, upperBoundLayer); // upperBoundLayer là exclusive
-                if (generatedBoard[slotIdx, layerIdx] == -1)
+                int layerIdx = rand.Next(lowerBoundLayer, upperBoundLayer);
+                if (placementBoard[slotIdx, layerIdx] == -1)
                 {
-                    generatedBoard[slotIdx, layerIdx] = itemID;
+                    placementBoard[slotIdx, layerIdx] = itemID;
                     return (true, layerIdx);
                 }
             }
-            return (false, -1); // Không tìm thấy sau các lần thử
+            // Không tìm thấy chỗ trống trong khoảng giới hạn sau nhiều lần thử
+            return (false, -1);
         }
 
-        /// <summary>
-        /// Thử tìm và đặt item ở bất kỳ vị trí nào trên bảng hiện tại.
-        /// </summary>
-        /// <returns>Tuple (bool success, int layerIndex) </returns>
-        private (bool, int) TryPlaceGlobally(int itemID, int slotsPerLayer, int currentNumberOfLayers)
-        {
-             for (int attempt = 0; attempt < MAX_PLACEMENT_ATTEMPTS_GLOBAL; attempt++)
-            {
-                int slotIdx = rand.Next(0, slotsPerLayer);
-                int layerIdx = rand.Next(0, currentNumberOfLayers);
-                if (generatedBoard[slotIdx, layerIdx] == -1)
-                {
-                    generatedBoard[slotIdx, layerIdx] = itemID;
-                    return (true, layerIdx);
-                }
-            }
-            return (false, -1); // Không tìm thấy sau các lần thử
-        }
 
         // ========================================================================
-        // Board Manipulation Methods
+        // Board Manipulation Methods (Không đổi)
         // ========================================================================
-
-        /// <summary>
-        /// Mở rộng mảng generatedBoard thêm một lớp (chiều thứ 2).
-        /// </summary>
-        private void ExpandBoard(int slotsPerLayer, ref int currentNumberOfLayers)
+        private void ExpandPlacementBoard(int slotsPerLayer, ref int currentNumberOfLayers)
         {
             int oldNumberOfLayers = currentNumberOfLayers;
-            currentNumberOfLayers++; // Tăng số lớp
-
+            currentNumberOfLayers++;
             int[,] newBoard = new int[slotsPerLayer, currentNumberOfLayers];
-            InitializeBoard(newBoard, -1); // Khởi tạo bảng mới với -1
-
-            // Sao chép dữ liệu cũ
-            for (int r = 0; r < slotsPerLayer; r++)
-            {
-                // Array.Copy hiệu quả hơn cho việc sao chép hàng loạt
-                Array.Copy(generatedBoard, r * oldNumberOfLayers, newBoard, r * currentNumberOfLayers, oldNumberOfLayers);
-                // Dòng trên cần xem lại, cách tính index mảng 2D trong Array.Copy phức tạp. Dùng vòng lặp an toàn hơn.
-                // for (int c = 0; c < oldNumberOfLayers; c++) {
-                //     newBoard[r, c] = generatedBoard[r, c];
-                // }
+            InitializeBoard(newBoard, -1);
+            for (int r = 0; r < slotsPerLayer; r++) {
+                for (int c = 0; c < oldNumberOfLayers; c++) {
+                    newBoard[r, c] = placementBoard[r, c];
+                }
             }
-            // Sửa lại bằng vòng lặp cho chính xác:
-             for (int r = 0; r < slotsPerLayer; r++) {
-                 for (int c = 0; c < oldNumberOfLayers; c++) { // Chỉ copy các lớp cũ
-                     newBoard[r, c] = generatedBoard[r, c];
-                 }
-             }
-
-
-            generatedBoard = newBoard; // Cập nhật tham chiếu
+            placementBoard = newBoard;
         }
 
-        /// <summary>
-        /// Khởi tạo bảng với giá trị ban đầu.
-        /// </summary>
         private void InitializeBoard(int[,] board, int initialValue)
         {
             int rows = board.GetLength(0);
             int cols = board.GetLength(1);
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < cols; j++)
-                {
+            // Array.Fill(board, initialValue);
+            // Hoặc dùng vòng lặp
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
                     board[i, j] = initialValue;
                 }
             }
         }
 
         // ========================================================================
+        // Final Board Creation & Mapping (Không đổi)
+        // ========================================================================
+         private ShelfData[,] CreateEmptyFinalBoard(int slotsPerLayer)
+        {
+            finalNumberOfLayers = 1;
+            ShelfData[,] emptyBoard = new ShelfData[boardSize.x, boardSize.y];
+            for (int i = 0; i < boardSize.x; i++) {
+                for (int j = 0; j < boardSize.y; j++) {
+                    ShelfType type = (originalBoardData != null && i < originalBoardData.GetLength(0) && j < originalBoardData.GetLength(1))
+                                     ? originalBoardData[i, j].shelfType : ShelfType.Normal;
+                    emptyBoard[i, j] = new ShelfData {
+                        shelfType = type, position = new Vector2Int(i, j), slotDatas = new List<SlotData>()
+                    };
+                    if (type != ShelfType.Empty) {
+                        for (int h = 0; h < 3; h++) {
+                             var items = new List<int>(finalNumberOfLayers);
+                             for(int k=0; k<finalNumberOfLayers; k++) items.Add(-1);
+                             emptyBoard[i,j].slotDatas.Add(new SlotData { itemsLists = items });
+                        }
+                    }
+                }
+            }
+            return emptyBoard;
+        }
+
+        private ShelfData[,] CreateAndMapFinalBoard(int slotsPerLayer, int numberOfLayers)
+        {
+            ShelfData[,] finalBoard = new ShelfData[boardSize.x, boardSize.y];
+            int placementBoardRowIndex = 0;
+            for (int i = 0; i < boardSize.x; i++) {
+                for (int j = 0; j < boardSize.y; j++) {
+                    ShelfType type = (originalBoardData != null && i < originalBoardData.GetLength(0) && j < originalBoardData.GetLength(1))
+                                     ? originalBoardData[i, j].shelfType : ShelfType.Normal;
+                    finalBoard[i, j] = new ShelfData {
+                        shelfType = type, position = new Vector2Int(i, j), slotDatas = new List<SlotData>(3)
+                    };
+                    if (type != ShelfType.Empty) {
+                        if (placementBoardRowIndex + 2 >= placementBoard.GetLength(0)) {
+                             Debug.LogError($"GenLevelAlgorithm Error: placementBoardRowIndex out of bounds during mapping.");
+                             return finalBoard; // Return partially mapped board to avoid exception
+                        }
+                        for (int h = 0; h < 3; h++) {
+                            var slotData = new SlotData { itemsLists = new List<int>(numberOfLayers) };
+                            for (int k = 0; k < numberOfLayers; k++) {
+                                // Check bounds for placementBoard just in case numberOfLayers changed drastically
+                                if (k < placementBoard.GetLength(1)) {
+                                     slotData.itemsLists.Add(placementBoard[placementBoardRowIndex + h, k]);
+                                } else {
+                                     slotData.itemsLists.Add(-1); // Add empty if layer doesn't exist in placementBoard (shouldn't happen often)
+                                     Debug.LogWarning($"GenLevelAlgorithm Warning: Accessing layer {k} outside placementBoard bounds ({placementBoard.GetLength(1)}) during mapping.");
+                                }
+                            }
+                            finalBoard[i, j].slotDatas.Add(slotData);
+                        }
+                        placementBoardRowIndex += 3;
+                    }
+                }
+            }
+             if (placementBoardRowIndex != slotsPerLayer && slotsPerLayer > 0) { // Add check for slotsPerLayer > 0
+                 Debug.LogWarning($"GenLevelAlgorithm Warning: Mapping finished, placementBoardRowIndex ({placementBoardRowIndex}) != slotsPerLayer ({slotsPerLayer}).");
+             }
+            return finalBoard;
+        }
+
+        // ========================================================================
         // Calculation & Helper Methods
         // ========================================================================
-
-         /// <summary>
-        /// Tạo bảng trống khi không có item nào được yêu cầu.
-        /// </summary>
-        private bool CreateEmptyBoard(int slotsPerLayer) {
-            generatedBoard = new int[slotsPerLayer, 1];
-            InitializeBoard(generatedBoard, -1);
-            finalNumberOfLayers = 1;
-            return true;
+        private bool ValidateInput() {
+             if (originalBoardData == null) { Debug.LogError("GenLevelAlgorithm Input Error: originalBoardData is null."); return false; }
+             if (boardSize.x <= 0 || boardSize.y <= 0) { Debug.LogError($"GenLevelAlgorithm Input Error: boardSize ({boardSize}) is invalid."); return false; }
+             if (originalBoardData.GetLength(0) < boardSize.x || originalBoardData.GetLength(1) < boardSize.y) { Debug.LogError($"GenLevelAlgorithm Input Error: originalBoardData dimensions [{originalBoardData.GetLength(0)},{originalBoardData.GetLength(1)}] are smaller than boardSize {boardSize}."); return false; }
+             // depth is now handled in constructor to be >= 0
+             return true;
         }
-
-        /// <summary>
-        /// Kiểm tra tính hợp lệ của các tham số đầu vào.
-        /// </summary>
-        private bool ValidateInput()
-        {
-            if (boardData == null || boardSize.x <= 0 || boardSize.y <= 0 || depth < 0)
-            {
-                Debug.LogError("Input validation failed: boardData null, boardSize invalid, or depth negative.");
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Đếm số lượng slot hợp lệ (không Empty) trên mỗi lớp từ boardData.
-        /// </summary>
-        private int GetSlotsPerLayer()
-        {
+        private int GetSlotsPerLayer() {
              int count = 0;
-             if (boardData == null) return 0; // Thêm kiểm tra null
+             if (originalBoardData == null) return 0;
              for (int i = 0; i < boardSize.x; i++) {
                  for (int j = 0; j < boardSize.y; j++) {
-                     if (i < boardData.GetLength(0) && j < boardData.GetLength(1)) {
-                         if (boardData[i, j].shelfType != ShelfType.Empty) {
+                     if (i < originalBoardData.GetLength(0) && j < originalBoardData.GetLength(1)) {
+                         if (originalBoardData[i, j].shelfType != ShelfType.Empty) {
                              count++;
                          }
-                     } else {
-                          Debug.LogWarning($"Accessing boardData out of bounds at [{i},{j}] during GetSlotsPerLayer.");
-                     }
+                     } else { Debug.LogWarning($"Accessing originalBoardData out of bounds at [{i},{j}] during GetSlotsPerLayer."); }
                  }
              }
              return count * 3;
         }
-
-        /// <summary>
-        /// Tính toán số lớp ban đầu cần thiết.
-        /// </summary>
-        private int CalculateInitialLayers(int slotsPerLayer, int totalItems, float coverPercent)
-        {
-            if (slotsPerLayer <= 0) return 1;
-            int maxItemsPerLayer = slotsPerLayer * 3;
-            if (maxItemsPerLayer <= 0) return Math.Max(1, totalItems);
-
-            float avgItemsPerLayer = maxItemsPerLayer * Math.Clamp(coverPercent, 0f, 1f);
-            int layers = (avgItemsPerLayer > 0.01f)
-                ? (int)Math.Ceiling((float)totalItems / avgItemsPerLayer)
-                : totalItems;
-            layers *= 3;
-            return Math.Max(1, layers);
+        private int CalculateInitialLayers(int slotsPerLayer, int totalItems, float coverPercent) {
+             if (slotsPerLayer <= 0) return 1;
+             int maxItemsPerLayer = slotsPerLayer;
+             float avgItemsPerLayer = maxItemsPerLayer * Math.Clamp(coverPercent, 0f, 1f);
+             int layers = (avgItemsPerLayer > 0.01f)
+                 ? (int)Math.Ceiling((float)totalItems / avgItemsPerLayer)
+                 : totalItems;
+             return Math.Max(1, layers);
         }
 
         /// <summary>
-        /// Tính toán khoảng layer hợp lệ [lower, upper) để đặt item tiếp theo.
+        /// SỬA ĐỔI: Tính khoảng layer hợp lệ [lower, upper) để đặt item tiếp theo,
+        /// đảm bảo phạm vi (max - min) không vượt quá depth.
         /// </summary>
-        /// <returns>Tuple (int lowerBound, int upperBound - exclusive)</returns>
-        private (int, int) CalculatePlacementBounds(int currentNumberOfLayers, int minLayerPlaced, int maxLayerPlaced, int depthValue)
+        private (int, int) CalculatePlacementBoundsStrict(int currentNumberOfLayers, int minLayerPlaced, int maxLayerPlaced, int depthValue)
         {
-            int lowerBound = 0;
-            int upperBound = currentNumberOfLayers; // Exclusive
-
-            if (minLayerPlaced != -1 && depthValue >= 0)
+            // Nếu chưa có item nào được đặt hoặc depth < 0 (vô hiệu hóa), cho phép toàn bộ phạm vi
+            if (minLayerPlaced == -1) // depthValue đã được đảm bảo >= 0 trong constructor
             {
-                lowerBound = Math.Max(0, minLayerPlaced - (depthValue));
-                upperBound = Math.Min(currentNumberOfLayers, maxLayerPlaced + (depthValue) + 1);
+                return (0, currentNumberOfLayers);
             }
 
-            // Đảm bảo lower <= upper
-            if (upperBound < lowerBound)
+            int currentRange = maxLayerPlaced - minLayerPlaced;
+
+            int lowerBound;
+            int upperBound;
+
+            // Nếu phạm vi hiện tại ĐÃ ĐẠT hoặc VƯỢT QUÁ giới hạn depth
+            if (currentRange >= depthValue)
             {
-                // Nếu khoảng không hợp lệ (ví dụ depth=0 và min/max đã khác nhau),
-                // hoặc khoảng cách quá lớn, mở rộng ra toàn bộ để tránh lỗi
-                lowerBound = 0;
-                upperBound = currentNumberOfLayers;
+                // Chỉ cho phép đặt trong các lớp hiện có để không tăng phạm vi
+                lowerBound = minLayerPlaced;
+                upperBound = maxLayerPlaced + 1; // +1 vì giới hạn trên là exclusive
             }
+            else // Nếu phạm vi hiện tại vẫn nhỏ hơn depth, cho phép mở rộng
+            {
+                // Cho phép đặt trong khoảng cách 'depth' từ min và max hiện tại
+                // Nhưng cần đảm bảo phạm vi tổng không vượt quá depth
+                // Ví dụ: depth=2, min=3, max=3. currentRange=0.
+                // Có thể đặt từ Max(0, 3-2)=1 đến Min(N, 3+2+1)=Min(N, 6). => [1, 6)
+                // Ví dụ: depth=2, min=3, max=4. currentRange=1.
+                // Có thể đặt từ Max(0, 3-2)=1 đến Min(N, 4+2+1)=Min(N, 7). => [1, 7)
+                // Logic này vẫn giống logic cũ và có thể gây lỗi.
+
+                // --> Logic đúng: Tính toán giới hạn sao cho lớp mới (k) thỏa mãn:
+                // Max(k, maxLayerPlaced) - Min(k, minLayerPlaced) <= depthValue
+
+                // Giới hạn dưới: Lớp thấp nhất có thể là minLayerPlaced - (depthValue - currentRange)
+                // Ví dụ: depth=2, min=3, max=4 (range=1). Lớp thấp nhất có thể là 3 - (2-1) = 2
+                // Ví dụ: depth=2, min=3, max=3 (range=0). Lớp thấp nhất có thể là 3 - (2-0) = 1
+                lowerBound = Math.Max(0, minLayerPlaced - (depthValue - currentRange));
+
+                // Giới hạn trên: Lớp cao nhất có thể là maxLayerPlaced + (depthValue - currentRange)
+                // Ví dụ: depth=2, min=3, max=4 (range=1). Lớp cao nhất có thể là 4 + (2-1) = 5. UpperBound = 6.
+                // Ví dụ: depth=2, min=3, max=3 (range=0). Lớp cao nhất có thể là 3 + (2-0) = 5. UpperBound = 6.
+                upperBound = Math.Min(currentNumberOfLayers, maxLayerPlaced + (depthValue - currentRange) + 1);
+
+            }
+
+            // Sanity check cuối cùng
+             if (upperBound <= lowerBound)
+             {
+                 // Nếu tính toán vẫn lỗi (có thể xảy ra với depth=0 khi min!=max),
+                 // fallback về đặt trong khoảng hiện tại nếu có thể, hoặc mở rộng nếu không
+                 if (maxLayerPlaced >= minLayerPlaced) {
+                     lowerBound = minLayerPlaced;
+                     upperBound = maxLayerPlaced + 1;
+                     Debug.LogWarning($"GenLevelAlgorithm Warning: Strict placement bounds [{lowerBound},{upperBound}) became invalid after calculation. Falling back to current range [{minLayerPlaced},{maxLayerPlaced+1}).");
+                 } else {
+                     // Trường hợp rất lạ, fallback về toàn cục và hy vọng mở rộng sẽ giải quyết
+                     lowerBound = 0;
+                     upperBound = currentNumberOfLayers;
+                      Debug.LogError($"GenLevelAlgorithm Error: Strict placement bounds invalid and minLayer > maxLayer. Fallback to full range.");
+                 }
+                 // Đảm bảo upperBound không nhỏ hơn lowerBound sau fallback
+                 if (upperBound <= lowerBound && currentNumberOfLayers > lowerBound) {
+                     upperBound = lowerBound + 1; // Ít nhất cho phép 1 lớp nếu có thể
+                 } else if (upperBound <= lowerBound) {
+                     // Không còn gì để làm, sẽ kích hoạt mở rộng bảng
+                 }
+
+             }
+
             return (lowerBound, upperBound);
         }
 
-        /// <summary>
-        /// Cập nhật layer nhỏ nhất và lớn nhất đã đặt item.
-        /// </summary>
-        private void UpdateMinMaxLayers(int currentLayer, ref int minLayer, ref int maxLayer)
-        {
-            if (minLayer == -1)
-            {
-                minLayer = currentLayer;
-                maxLayer = currentLayer;
-            }
-            else
-            {
-                minLayer = Math.Min(minLayer, currentLayer);
-                maxLayer = Math.Max(maxLayer, currentLayer);
-            }
+
+        private void UpdateMinMaxLayers(int currentLayer, ref int minLayer, ref int maxLayer) {
+             if (minLayer == -1) { minLayer = currentLayer; maxLayer = currentLayer; }
+             else { minLayer = Math.Min(minLayer, currentLayer); maxLayer = Math.Max(maxLayer, currentLayer); }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace DefaultNamespace
     {
         // --- Input Fields ---
         public Vector2Int boardSize;
-        public GameCore.ShelfData[,] boardData;
+        public ShelfData[,] boardData;
         public Dictionary<int, int> amountPairEachItem;
         public float percentCoverLayer;
         public int depth;
