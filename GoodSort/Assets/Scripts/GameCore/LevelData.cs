@@ -89,11 +89,11 @@ public class LevelData : ScriptableObject
     private static ShelfData DrawBoard(Rect rect, ShelfData value)
     {
         // Khởi tạo value nếu null
-        if (value == null)
-        {
-            // Gán position dựa trên ngữ cảnh TableMatrix thường không cần thiết ở đây
-            value = new ShelfData { shelfType = ShelfType.Normal, slotDatas = new List<SlotData>() };
-        }
+        // if (value == null)
+        // {
+        //     // Gán position dựa trên ngữ cảnh TableMatrix thường không cần thiết ở đây
+        //     value = new ShelfData { shelfType = ShelfType.Normal, slotDatas = new List<SlotData>() };
+        // }
         // Đảm bảo slotDatas không null
         if (value.slotDatas == null)
         {
@@ -197,4 +197,3 @@ public class LevelData : ScriptableObject
         return "?"; // Trả về "?" nếu không hợp lệ
     }
 }
-

@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e9dbb1e5e554401b96cda46d31fb91, type: 3}
+  m_Name: LevelData_Flexible
+  m_EditorClassIdentifier: 
+  shelfList:
+  - shelfType: 1
+    position: {x: 0, y: 0}
+    slotDatas:
+    - rid: 5311359722282549673
+  - shelfType: 0
+    position: {x: 0, y: 1}
+    slotDatas:
+    - rid: 5311359722282549674
+    - rid: 5311359722282549675
+    - rid: 5311359722282549676
+  - shelfType: 0
+    position: {x: 0, y: 2}
+    slotDatas:
+    - rid: 5311359722282549677
+    - rid: 5311359722282549678
+    - rid: 5311359722282549679
+  - shelfType: 0
+    position: {x: 1, y: 0}
+    slotDatas:
+    - rid: 5311359722282549680
+    - rid: 5311359722282549681
+    - rid: 5311359722282549682
+  - shelfType: 0
+    position: {x: 1, y: 1}
+    slotDatas:
+    - rid: 5311359722282549683
+    - rid: 5311359722282549684
+    - rid: 5311359722282549685
+  - shelfType: 0
+    position: {x: 1, y: 2}
+    slotDatas:
+    - rid: 5311359722282549686
+    - rid: 5311359722282549687
+    - rid: 5311359722282549688
+  - shelfType: 0
+    position: {x: 2, y: 0}
+    slotDatas:
+    - rid: 5311359722282549689
+    - rid: 5311359722282549690
+    - rid: 5311359722282549691
+  - shelfType: 0
+    position: {x: 2, y: 1}
+    slotDatas:
+    - rid: 5311359722282549692
+    - rid: 5311359722282549693
+    - rid: 5311359722282549694
+  - shelfType: 0
+    position: {x: 2, y: 2}
+    slotDatas:
+    - rid: 5311359722282549695
+    - rid: 5311359722282549696
+    - rid: 5311359722282549697
+  percentCoverLayer: 0.9
+  depth: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: 5311359722282549673
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 010000000200000003000000
+    - rid: 5311359722282549674
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffff02000000
+    - rid: 5311359722282549675
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0200000003000000
+    - rid: 5311359722282549676
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0200000003000000
+    - rid: 5311359722282549677
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffff02000000
+    - rid: 5311359722282549678
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0300000002000000
+    - rid: 5311359722282549679
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffffffffffff
+    - rid: 5311359722282549680
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffff03000000
+    - rid: 5311359722282549681
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0100000002000000
+    - rid: 5311359722282549682
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0200000001000000
+    - rid: 5311359722282549683
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 01000000ffffffff
+    - rid: 5311359722282549684
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0300000001000000
+    - rid: 5311359722282549685
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0300000001000000
+    - rid: 5311359722282549686
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffff01000000
+    - rid: 5311359722282549687
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffff02000000
+    - rid: 5311359722282549688
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffffffffffff
+    - rid: 5311359722282549689
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 03000000ffffffff
+    - rid: 5311359722282549690
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffff01000000
+    - rid: 5311359722282549691
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0300000002000000
+    - rid: 5311359722282549692
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0300000002000000
+    - rid: 5311359722282549693
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0200000002000000
+    - rid: 5311359722282549694
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffff03000000
+    - rid: 5311359722282549695
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: ffffffffffffffff
+    - rid: 5311359722282549696
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0200000001000000
+    - rid: 5311359722282549697
+      type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
+      data:
+        itemsLists: 0200000003000000

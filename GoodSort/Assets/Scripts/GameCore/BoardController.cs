@@ -41,9 +41,4 @@ namespace GameCore
             
         }
     }
-
-    public enum ShelfType
-    {
-        Empty, Normal, Lock
-    }
 }

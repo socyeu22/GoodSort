@@ -963,3 +963,1101 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:scripting/precompiled-assembly-types:Assembly-CSharp: 73ed6cf57b088f1ac79f9b6b60094f85 -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16fbc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.326 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.844 seconds
+Domain Reload Profiling: 1171ms
+	BeginReloadAssembly (100ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (17ms)
+	LoadAllAssembliesAndSetupDomain (177ms)
+		LoadAssemblies (190ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (20ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (845ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (419ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (15ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (53ms)
+			ProcessInitializeOnLoadAttributes (244ms)
+			ProcessInitializeOnLoadMethodAttributes (101ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 1.36 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3298 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3869.
+Memory consumption went from 284.2 MB to 284.2 MB.
+Total: 14.170084 ms (FindLiveObjects: 0.130916 ms CreateObjectMapping: 0.045709 ms MarkObjects: 13.949292 ms  DeleteObjects: 0.043667 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 73ed6cf57b088f1ac79f9b6b60094f85 -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16fbc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.287 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.808 seconds
+Domain Reload Profiling: 1095ms
+	BeginReloadAssembly (89ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (14ms)
+	LoadAllAssembliesAndSetupDomain (153ms)
+		LoadAssemblies (163ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (19ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (808ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (415ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (51ms)
+			ProcessInitializeOnLoadAttributes (242ms)
+			ProcessInitializeOnLoadMethodAttributes (99ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Refreshing native plugins compatible for Editor in 1.40 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3298 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3872.
+Memory consumption went from 297.0 MB to 296.9 MB.
+Total: 14.206875 ms (FindLiveObjects: 0.115875 ms CreateObjectMapping: 0.044292 ms MarkObjects: 14.000541 ms  DeleteObjects: 0.045125 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 73ed6cf57b088f1ac79f9b6b60094f85 -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Import Request.
+  Time since last request: 17437.734276 seconds.
+  path: Assets/Scripts/GameCore/NewBehaviourScript.cs
+  artifactKey: Guid(31072b664e1b940c191db2c2c53ee9af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameCore/NewBehaviourScript.cs using Guid(31072b664e1b940c191db2c2c53ee9af) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '560d8075cfa8c686702561b03f827072') in 0.006296 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16fbc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.359 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.931 seconds
+Domain Reload Profiling: 1290ms
+	BeginReloadAssembly (118ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (51ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (17ms)
+	LoadAllAssembliesAndSetupDomain (190ms)
+		LoadAssemblies (210ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (15ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (931ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (438ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (16ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (54ms)
+			ProcessInitializeOnLoadAttributes (253ms)
+			ProcessInitializeOnLoadMethodAttributes (108ms)
+			AfterProcessingInitializeOnLoad (2ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (3ms)
+Refreshing native plugins compatible for Editor in 1.38 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3297 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3875.
+Memory consumption went from 308.8 MB to 308.8 MB.
+Total: 14.045458 ms (FindLiveObjects: 0.138625 ms CreateObjectMapping: 0.044250 ms MarkObjects: 13.805042 ms  DeleteObjects: 0.056667 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 73ed6cf57b088f1ac79f9b6b60094f85 -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Import Request.
+  Time since last request: 21.615295 seconds.
+  path: Assets/Scripts/GameCore/GameCore_DataStructures.cs
+  artifactKey: Guid(719c403282ded4903a87583dd22d9914) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameCore/GameCore_DataStructures.cs using Guid(719c403282ded4903a87583dd22d9914) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'a2b3fbcaed768e655c0e7c47069b9abd') in 0.001209 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16fbc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.301 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.846 seconds
+Domain Reload Profiling: 1147ms
+	BeginReloadAssembly (92ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (14ms)
+	LoadAllAssembliesAndSetupDomain (163ms)
+		LoadAssemblies (176ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (20ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (846ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (439ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (54ms)
+			ProcessInitializeOnLoadAttributes (254ms)
+			ProcessInitializeOnLoadMethodAttributes (110ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (2ms)
+Refreshing native plugins compatible for Editor in 1.94 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3298 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3879.
+Memory consumption went from 321.7 MB to 321.6 MB.
+Total: 23.276375 ms (FindLiveObjects: 0.130416 ms CreateObjectMapping: 0.042292 ms MarkObjects: 23.026750 ms  DeleteObjects: 0.076000 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GameCore_DataStructures.cs: eba1dd37b6306996f941ff4ca698d847 -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 1c565c31478e394eada4d7d2963435a0 -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Import Request.
+  Time since last request: 74.686150 seconds.
+  path: Assets/Scripts/GameCore/GameCore_DataStructures.cs
+  artifactKey: Guid(719c403282ded4903a87583dd22d9914) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameCore/GameCore_DataStructures.cs using Guid(719c403282ded4903a87583dd22d9914) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '5fe985a6346cdaa8b3640088f8b2de2a') in 0.001039 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 24.642415 seconds.
+  path: Assets/Scripts/GameCore/LevelData_Flexible.cs
+  artifactKey: Guid(51e9dbb1e5e554401b96cda46d31fb91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameCore/LevelData_Flexible.cs using Guid(51e9dbb1e5e554401b96cda46d31fb91) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'cd22f5e3385e6d89653f5de434921d98') in 0.000426 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 52.113146 seconds.
+  path: Assets/Scripts/GameCore/LevelData_Flexible.cs
+  artifactKey: Guid(51e9dbb1e5e554401b96cda46d31fb91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameCore/LevelData_Flexible.cs using Guid(51e9dbb1e5e554401b96cda46d31fb91) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '20ba671024899262dc5fbecc38d664f7') in 0.000236 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 6.630367 seconds.
+  path: Assets/Scripts/GameCore/GenLevelAlgorithm_Flexible.cs
+  artifactKey: Guid(e8e12f9c1fc0b4fe5aa72109e17b67e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameCore/GenLevelAlgorithm_Flexible.cs using Guid(e8e12f9c1fc0b4fe5aa72109e17b67e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '50b23e948b53e6f16056384b460f7969') in 0.000383 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 852.333580 seconds.
+  path: Assets/Scripts/GameCore/GenLevelAlgorithm_Flexible.cs
+  artifactKey: Guid(e8e12f9c1fc0b4fe5aa72109e17b67e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameCore/GenLevelAlgorithm_Flexible.cs using Guid(e8e12f9c1fc0b4fe5aa72109e17b67e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'cf1cc5fc819f361f437f726c925a6cbe') in 0.000952 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16ffc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.344 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.871 seconds
+Domain Reload Profiling: 1215ms
+	BeginReloadAssembly (105ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (46ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (15ms)
+	LoadAllAssembliesAndSetupDomain (192ms)
+		LoadAssemblies (204ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (20ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (871ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (446ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (18ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (55ms)
+			ProcessInitializeOnLoadAttributes (254ms)
+			ProcessInitializeOnLoadMethodAttributes (111ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (3ms)
+Refreshing native plugins compatible for Editor in 1.43 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3300 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3884.
+Memory consumption went from 334.5 MB to 334.5 MB.
+Total: 14.193708 ms (FindLiveObjects: 0.150833 ms CreateObjectMapping: 0.047708 ms MarkObjects: 13.942917 ms  DeleteObjects: 0.051625 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/LevelData_Flexible.cs: d895197e097c2174a8276e0c62a0ad9d -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GameCore_DataStructures.cs: d91edf3a5818704f1499e1ad6e61b039 -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm_Flexible.cs: a40e9c97f0f77b9128e0e55211622661 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 244fb4fdebc68295545050aa02083f7d -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Import Request.
+  Time since last request: 745.712763 seconds.
+  path: Assets/Scripts/GameCore/GenLevelAlgorithm_Flexible.cs
+  artifactKey: Guid(e8e12f9c1fc0b4fe5aa72109e17b67e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameCore/GenLevelAlgorithm_Flexible.cs using Guid(e8e12f9c1fc0b4fe5aa72109e17b67e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '428d3db1d4b470065884721c182f36ea') in 0.001050 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 25.329220 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+The field LevelData_Flexible.shelfList has the [SerializeReference] attribute applied, but is a collection of type GameCore.ShelfData, which is a value type. By definition, value types cannot be serialized by reference.
+ -> (artifact id: 'bbd81f265c9341537f99f2f8789c3c04') in 0.006005 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16ffc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.331 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.819 seconds
+Domain Reload Profiling: 1150ms
+	BeginReloadAssembly (92ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (37ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (14ms)
+	LoadAllAssembliesAndSetupDomain (191ms)
+		LoadAssemblies (203ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (19ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (819ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (420ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (16ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (50ms)
+			ProcessInitializeOnLoadAttributes (246ms)
+			ProcessInitializeOnLoadMethodAttributes (103ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 1.42 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3300 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3888.
+Memory consumption went from 347.4 MB to 347.4 MB.
+Total: 13.140958 ms (FindLiveObjects: 0.136583 ms CreateObjectMapping: 0.044708 ms MarkObjects: 12.926125 ms  DeleteObjects: 0.032958 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/LevelData_Flexible.cs: d895197e097c2174a8276e0c62a0ad9d -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GameCore_DataStructures.cs: d91edf3a5818704f1499e1ad6e61b039 -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm_Flexible.cs: a40e9c97f0f77b9128e0e55211622661 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 244fb4fdebc68295545050aa02083f7d -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Import Request.
+  Time since last request: 353.396995 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '6d7a92bb2123bcbecaf36b05af271d5c') in 0.005807 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 99.884590 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '07e72d082a240a823b61cbcde28f45d8') in 0.000889 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16ffc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.344 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.827 seconds
+Domain Reload Profiling: 1172ms
+	BeginReloadAssembly (101ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (41ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (20ms)
+	LoadAllAssembliesAndSetupDomain (192ms)
+		LoadAssemblies (203ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (23ms)
+			TypeCache.Refresh (12ms)
+				TypeCache.ScanAssembly (1ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (827ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (427ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (53ms)
+			ProcessInitializeOnLoadAttributes (252ms)
+			ProcessInitializeOnLoadMethodAttributes (100ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Refreshing native plugins compatible for Editor in 1.41 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3300 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3891.
+Memory consumption went from 360.2 MB to 360.2 MB.
+Total: 13.432916 ms (FindLiveObjects: 0.116959 ms CreateObjectMapping: 0.041791 ms MarkObjects: 13.228042 ms  DeleteObjects: 0.045666 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/LevelData_Flexible.cs: d895197e097c2174a8276e0c62a0ad9d -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GameCore_DataStructures.cs: d91edf3a5818704f1499e1ad6e61b039 -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm_Flexible.cs: a40e9c97f0f77b9128e0e55211622661 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 244fb4fdebc68295545050aa02083f7d -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Import Request.
+  Time since last request: 1167.169735 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '92b9b398edddd33375fb36d3298a197b') in 0.006218 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16fbc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.307 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.858 seconds
+Domain Reload Profiling: 1166ms
+	BeginReloadAssembly (102ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (43ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (16ms)
+	LoadAllAssembliesAndSetupDomain (157ms)
+		LoadAssemblies (170ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (19ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (859ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (430ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (53ms)
+			ProcessInitializeOnLoadAttributes (247ms)
+			ProcessInitializeOnLoadMethodAttributes (108ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Refreshing native plugins compatible for Editor in 1.40 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3300 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3894.
+Memory consumption went from 373.0 MB to 372.9 MB.
+Total: 13.386625 ms (FindLiveObjects: 0.139791 ms CreateObjectMapping: 0.048625 ms MarkObjects: 13.150208 ms  DeleteObjects: 0.047292 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/LevelData_Flexible.cs: d895197e097c2174a8276e0c62a0ad9d -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GameCore_DataStructures.cs: d91edf3a5818704f1499e1ad6e61b039 -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm_Flexible.cs: a40e9c97f0f77b9128e0e55211622661 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 244fb4fdebc68295545050aa02083f7d -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Import Request.
+  Time since last request: 658.240570 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'dba59dbbefa162736f847ac268130336') in 0.006440 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 15.897589 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '191b690b886e69a79a0fd5e279e768b9') in 0.000776 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 80.514321 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '0cd707b864a761f2d6b0ac8f7f1e3b7d') in 0.000805 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 121.609659 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '3f14bbba11446a8f9f6bcd242d326ed1') in 0.000746 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 5512.612810 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '31a6d9414303bb2789c2151499c4961d') in 0.000817 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 10.631770 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'bf9d6ec6fd4ecc40aef32b2c59f502e2') in 0.000781 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 972.445773 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'fcd2716e9741b76820b051b029ed4072') in 0.000726 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 14.158548 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '0f38b033362b499a50b6a84537badb5e') in 0.000765 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 98.276107 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '7ce3bec820499896390be4e490bd29de') in 0.000825 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 3.627660 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '32137bfb90a3f507f18b00373b4558a0') in 0.000878 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 675.907288 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '886249ffa3f0308eb3a653b0c7137453') in 0.000934 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16ffc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.317 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.908 seconds
+Domain Reload Profiling: 1225ms
+	BeginReloadAssembly (99ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (15ms)
+	LoadAllAssembliesAndSetupDomain (170ms)
+		LoadAssemblies (186ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (18ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (909ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (438ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (18ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (55ms)
+			ProcessInitializeOnLoadAttributes (256ms)
+			ProcessInitializeOnLoadMethodAttributes (104ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 1.51 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3300 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3897.
+Memory consumption went from 385.8 MB to 385.8 MB.
+Total: 13.161541 ms (FindLiveObjects: 0.119667 ms CreateObjectMapping: 0.048625 ms MarkObjects: 12.958917 ms  DeleteObjects: 0.033416 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/LevelData_Flexible.cs: d895197e097c2174a8276e0c62a0ad9d -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GameCore_DataStructures.cs: d91edf3a5818704f1499e1ad6e61b039 -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm_Flexible.cs: a40e9c97f0f77b9128e0e55211622661 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 244fb4fdebc68295545050aa02083f7d -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16fbc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.285 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.819 seconds
+Domain Reload Profiling: 1105ms
+	BeginReloadAssembly (89ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (15ms)
+	LoadAllAssembliesAndSetupDomain (150ms)
+		LoadAssemblies (162ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (18ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (819ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (426ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (53ms)
+			ProcessInitializeOnLoadAttributes (247ms)
+			ProcessInitializeOnLoadMethodAttributes (105ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
+Refreshing native plugins compatible for Editor in 1.45 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3301 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3900.
+Memory consumption went from 398.8 MB to 398.8 MB.
+Total: 13.258917 ms (FindLiveObjects: 0.139500 ms CreateObjectMapping: 0.043459 ms MarkObjects: 13.035916 ms  DeleteObjects: 0.039417 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/LevelData_Flexible.cs: d895197e097c2174a8276e0c62a0ad9d -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: 1c296a7185ba3fefc93011f260fe7951 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GameCore_DataStructures.cs: d91edf3a5818704f1499e1ad6e61b039 -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm_Flexible.cs: a40e9c97f0f77b9128e0e55211622661 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 244fb4fdebc68295545050aa02083f7d -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Import Request.
+  Time since last request: 421.068575 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '1b7e06fad936554c0d128f1899a14efe') in 0.007086 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 77.109013 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'eac9729fa1af6db50cc0819bbc51f782') in 0.000918 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 18.717609 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '07b43a5d2ba69e3c7a65d58967114167') in 0.000837 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 3.197410 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '22df916d81ca7951e91af2547e227fb6') in 0.000850 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 206.890004 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '902b63682449e37817b7c5a3b4eb0c15') in 0.000823 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 152.134788 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '05634bf0a471e174665b32b5d7aa0d0b') in 0.001271 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 228.965464 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '12f2825e67e2aa513f7434e9527d788f') in 0.000996 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 27.818875 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'c9b47c8d6fa0d284a0f47921a91bc6fd') in 0.000885 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 104.553948 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '949732491247ea592b6d5cd436cd52c0') in 0.000721 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 13.478625 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'e37e9a8d049a5598efe2a27350fbef5b') in 0.000741 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16ffc7000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.338 seconds
+Native extension for iOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.914 seconds
+Domain Reload Profiling: 1253ms
+	BeginReloadAssembly (114ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (47ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (16ms)
+	LoadAllAssembliesAndSetupDomain (178ms)
+		LoadAssemblies (192ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (20ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (914ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (433ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (54ms)
+			ProcessInitializeOnLoadAttributes (249ms)
+			ProcessInitializeOnLoadMethodAttributes (108ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
+Refreshing native plugins compatible for Editor in 1.36 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3300 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 21 unused Assets / (29.5 KB). Loaded Objects now: 3903.
+Memory consumption went from 410.4 MB to 410.4 MB.
+Total: 13.518500 ms (FindLiveObjects: 0.111292 ms CreateObjectMapping: 0.041208 ms MarkObjects: 13.292625 ms  DeleteObjects: 0.072875 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/LevelData_Flexible.cs: d895197e097c2174a8276e0c62a0ad9d -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/SlotData.cs: d0f09018ddf9257da40eca4e731f0c76 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/GameCore_DataStructures.cs: d91edf3a5818704f1499e1ad6e61b039 -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm.cs: eaf2b04fcc0056e72c8e672b357b5a1b -> 
+  custom:scripting/monoscript/fileName/GenLevelAlgorithm_Flexible.cs: a40e9c97f0f77b9128e0e55211622661 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/BoardController.cs: bd75b65a4e8b35395db1f32b26fc5594 -> f5803bf86b108310e9eb39ac49c97c44
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:scripting/monoscript/fileName/ShelfData.cs: 22ea6df35411e5c8360b37e72f7fddeb -> 0a5238c65c428180c35da68ba4eb9aca
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 82e34de6310bcd035ea79776b3f96b5f -> eaf2beb34fad526a45e3c07247a2ac50
+========================================================================
+Received Import Request.
+  Time since last request: 96623.107915 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'a3adcd24daf0fcc34e74b98804940f9e') in 0.006320 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 55.245225 seconds.
+  path: Assets/GameData/LevelData_Flexible.asset
+  artifactKey: Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameData/LevelData_Flexible.asset using Guid(0ef9f4a4564a04ed5a5b39433fca6a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '078a337a5072e475d1b8e993a7e28677') in 0.000719 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
