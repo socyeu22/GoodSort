@@ -48,5 +48,20 @@ namespace GameCore
             position = pos;
             slotDatas = new List<SlotData>();
         }
+
+        public bool IsFirstLayerEmpty
+        {
+            get
+            {
+                foreach (var slotData in slotDatas)
+                {
+                    if (slotData.itemsLists[0] != -1)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
     }
 }

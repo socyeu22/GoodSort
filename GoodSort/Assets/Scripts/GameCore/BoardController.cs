@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace GameCore
@@ -7,38 +8,72 @@ namespace GameCore
     {
         [SerializeField] private BoardView m_boardView;
         private BoardModel m_boardModel;
+        public List<ShelfData> ShelfData => m_boardModel.shelfData;
 
-        public void InitBoard(LevelData levelData)
+        public void InitBoard(LevelData_Flexible levelData)
         {
-            m_boardView.CreateBoard(this);
             m_boardModel = new BoardModel(levelData);
+            m_boardView.CreateBoard(this);
         }
 
-        public void UpdateBoardData(int itemId, Vector2Int shelfStart, Vector2Int shelfEnd)
+        public void UpdateBoardData(int itemId, Vector2Int shelfStart, Vector2Int shelfEnd, out bool positionMatch)
         {
-            
-        }
-
-        public List<Vector2Int> GetShelfPositionsMatched()
-        {
-            var list = new List<Vector2Int>();
-            // Check inside Board Data to see what will match and return Position for View Update
-            return list;
+            positionMatch = m_boardModel.TryMatch(itemId, shelfStart, shelfEnd);
         }
     }
 
     public class BoardModel
     {
-        public List<ShelfData> shelfDatas;
+        public List<ShelfData> shelfData;
 
-        public BoardModel(LevelData levelData)
+        public BoardModel(LevelData_Flexible levelData)
         {
-            shelfDatas = new List<ShelfData>();
+            shelfData = levelData.shelfList;
         }
+        
+        private ShelfData GetShelfData(Vector2Int position) => shelfData.Find(x => x.position == position);
 
-        public void MatchShelf()
+        public bool TryMatch(int itemId, Vector2Int shelfStart, Vector2Int shelfEnd)
         {
+            var shelfStartData = GetShelfData(shelfStart);
+            var shelfEndData = GetShelfData(shelfEnd);
             
+            foreach (var slotData in shelfStartData.slotDatas)
+            {
+                if (slotData.itemsLists[0] == itemId)
+                {
+                    slotData.itemsLists[0] = -1;
+                    break;
+                }
+            }
+
+            if (shelfStartData.IsFirstLayerEmpty)
+            {
+                foreach (var slotData in shelfStartData.slotDatas)
+                {
+                    if (slotData.itemsLists.Count == 1)
+                    {
+                        break;
+                    }
+                    slotData.itemsLists.RemoveAt(0);
+                }
+            }
+
+            foreach (var slotData in shelfEndData.slotDatas)
+            {
+                if (slotData.itemsLists[0] == -1)
+                {
+                    slotData.itemsLists[0] = itemId;
+                    if (slotData.itemsLists.TrueForAll(id => id == itemId))
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+            }
+
+            return false;
         }
     }
 }

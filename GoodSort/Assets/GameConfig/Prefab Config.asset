@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1944d472e103430bb5666555dc8f88ad, type: 3}
+  m_Name: Prefab Config
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 964322024056952336, guid: feb790dba0bdc0142b2ad788f8f8cb17, type: 3}
+  shelfPrefab: {fileID: 6763910261516806027, guid: 93058eebc2cbac94892ce4441d2ed9ab, type: 3}

@@ -8,12 +8,12 @@ namespace GameCore
     {
         private GameData m_gameData;
         [SerializeField] private BoardController m_boardController;
-        [SerializeField] private List<LevelData> m_levelData;
+        [SerializeField] private List<LevelData_Flexible> m_levelData;
 
         private void Awake()
         {
             InitGame();
-            InitLevel(m_gameData.currentLevel);
+            InitLevel(0);
         }
 
         private void InitGame()

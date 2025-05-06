@@ -6,27 +6,34 @@ namespace GameCore
 {
     public class BoardView : MonoBehaviour
     {
-        private List<ShelfView> m_shelfViews;
+        private List<ShelfView> m_shelfViews = new();
         private BoardController m_boardController;
+        [SerializeField] private Transform m_boardTransform;
+        [SerializeField] private Vector2 m_offset;
         
         public void CreateBoard(BoardController boardController)
         {
             m_boardController = boardController;
             var shelfPrefab = GameConfig.Instance.prefabConfig.shelfPrefab;
             // Init Shelf Here - Add Shelf To List
+
+            foreach (var shelfData in boardController.ShelfData)
+            {
+                var shelfView = Instantiate(shelfPrefab, m_boardTransform);
+                shelfView.InitShelf(shelfData, OnStateBoardChange);
+                shelfView.transform.localPosition = new Vector3(m_offset.x * shelfData.position.x, m_offset.y * shelfData.position.y, 0);
+                m_shelfViews.Add(shelfView);
+            }
         }
 
-        public void OnStateBoardChange(int idItem, Vector2Int shelfStart, Vector2Int shelfEnd)
+        private void OnStateBoardChange(int idItem, Vector2Int shelfStart, Vector2Int shelfEnd)
         {
-            m_boardController.UpdateBoardData(idItem, shelfStart, shelfEnd);
-            var listMatchPos = m_boardController.GetShelfPositionsMatched();
-            
-            // Find All the Shelf View have same Position - Then remove the first layer of it
-        }
-
-        public void UserAction(int i)
-        {
-            
+            m_boardController.UpdateBoardData(idItem, shelfStart, shelfEnd, out var isHaveMatch);
+            if (isHaveMatch)
+            {
+                var shelfMatch = m_shelfViews.Find(p => p.Position == shelfEnd);
+                shelfMatch.RemoveLayerTop();
+            }
         }
     }
 }
