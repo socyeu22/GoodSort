@@ -14,159 +14,159 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfList:
   - shelfType: 1
+    position: {x: -4, y: -4}
+    slotDatas:
+    - rid: 4140704882675155019
+  - shelfType: 0
+    position: {x: -4, y: -2}
+    slotDatas:
+    - rid: 4140704882675155020
+    - rid: 4140704882675155021
+    - rid: 4140704882675155022
+  - shelfType: 0
+    position: {x: -4, y: 0}
+    slotDatas:
+    - rid: 4140704882675155023
+    - rid: 4140704882675155024
+    - rid: 4140704882675155025
+  - shelfType: 0
+    position: {x: 0, y: -4}
+    slotDatas:
+    - rid: 4140704882675155026
+    - rid: 4140704882675155027
+    - rid: 4140704882675155028
+  - shelfType: 0
+    position: {x: 0, y: -2}
+    slotDatas:
+    - rid: 4140704882675155029
+    - rid: 4140704882675155030
+    - rid: 4140704882675155031
+  - shelfType: 0
     position: {x: 0, y: 0}
     slotDatas:
-    - rid: 7945252567922245632
+    - rid: 4140704882675155032
+    - rid: 4140704882675155033
+    - rid: 4140704882675155034
   - shelfType: 0
-    position: {x: 0, y: 1}
+    position: {x: 4, y: -4}
     slotDatas:
-    - rid: 7945252567922245633
-    - rid: 7945252567922245634
-    - rid: 7945252567922245635
+    - rid: 4140704882675155035
+    - rid: 4140704882675155036
+    - rid: 4140704882675155037
   - shelfType: 0
-    position: {x: 0, y: 2}
+    position: {x: 4, y: -2}
     slotDatas:
-    - rid: 7945252567922245636
-    - rid: 7945252567922245637
-    - rid: 7945252567922245638
+    - rid: 4140704882675155038
+    - rid: 4140704882675155039
+    - rid: 4140704882675155040
   - shelfType: 0
-    position: {x: 1, y: 0}
+    position: {x: 4, y: 0}
     slotDatas:
-    - rid: 7945252567922245639
-    - rid: 7945252567922245640
-    - rid: 7945252567922245641
-  - shelfType: 0
-    position: {x: 1, y: 1}
-    slotDatas:
-    - rid: 7945252567922245642
-    - rid: 7945252567922245643
-    - rid: 7945252567922245644
-  - shelfType: 0
-    position: {x: 1, y: 2}
-    slotDatas:
-    - rid: 7945252567922245645
-    - rid: 7945252567922245646
-    - rid: 7945252567922245647
-  - shelfType: 0
-    position: {x: 2, y: 0}
-    slotDatas:
-    - rid: 7945252567922245648
-    - rid: 7945252567922245649
-    - rid: 7945252567922245650
-  - shelfType: 0
-    position: {x: 2, y: 1}
-    slotDatas:
-    - rid: 7945252567922245651
-    - rid: 7945252567922245652
-    - rid: 7945252567922245653
-  - shelfType: 0
-    position: {x: 2, y: 2}
-    slotDatas:
-    - rid: 7945252567922245654
-    - rid: 7945252567922245655
-    - rid: 7945252567922245656
+    - rid: 4140704882675155041
+    - rid: 4140704882675155042
+    - rid: 4140704882675155043
   percentCoverLayer: 0.9
   depth: 3
   references:
     version: 2
     RefIds:
-    - rid: 7945252567922245632
+    - rid: 4140704882675155019
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
         itemsLists: 010000000200000003000000
-    - rid: 7945252567922245633
+    - rid: 4140704882675155020
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 03000000ffffffff
-    - rid: 7945252567922245634
+        itemsLists: ffffffff0000000002000000
+    - rid: 4140704882675155021
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffff00000000
-    - rid: 7945252567922245635
+        itemsLists: 0400000002000000ffffffff
+    - rid: 4140704882675155022
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0300000000000000
-    - rid: 7945252567922245636
+        itemsLists: ffffffff0500000002000000
+    - rid: 4140704882675155023
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 01000000ffffffff
-    - rid: 7945252567922245637
+        itemsLists: 05000000ffffffff01000000
+    - rid: 4140704882675155024
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffffffffffff
-    - rid: 7945252567922245638
+        itemsLists: 020000000500000004000000
+    - rid: 4140704882675155025
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffff01000000
-    - rid: 7945252567922245639
+        itemsLists: 010000000000000003000000
+    - rid: 4140704882675155026
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0400000003000000
-    - rid: 7945252567922245640
+        itemsLists: 0500000004000000ffffffff
+    - rid: 4140704882675155027
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0100000002000000
-    - rid: 7945252567922245641
+        itemsLists: ffffffff0100000000000000
+    - rid: 4140704882675155028
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffffffffffff
-    - rid: 7945252567922245642
+        itemsLists: ffffffff0500000000000000
+    - rid: 4140704882675155029
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffff04000000
-    - rid: 7945252567922245643
+        itemsLists: 030000000200000004000000
+    - rid: 4140704882675155030
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffffffffffff
-    - rid: 7945252567922245644
+        itemsLists: 05000000ffffffff01000000
+    - rid: 4140704882675155031
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0100000000000000
-    - rid: 7945252567922245645
+        itemsLists: ffffffff00000000ffffffff
+    - rid: 4140704882675155032
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 02000000ffffffff
-    - rid: 7945252567922245646
+        itemsLists: 040000000500000001000000
+    - rid: 4140704882675155033
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0100000002000000
-    - rid: 7945252567922245647
+        itemsLists: 030000000000000004000000
+    - rid: 4140704882675155034
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0100000000000000
-    - rid: 7945252567922245648
+        itemsLists: ffffffff0100000001000000
+    - rid: 4140704882675155035
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0000000003000000
-    - rid: 7945252567922245649
+        itemsLists: 040000000100000001000000
+    - rid: 4140704882675155036
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 03000000ffffffff
-    - rid: 7945252567922245650
+        itemsLists: 030000000000000001000000
+    - rid: 4140704882675155037
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0100000002000000
-    - rid: 7945252567922245651
+        itemsLists: 000000000000000000000000
+    - rid: 4140704882675155038
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffffffffffff
-    - rid: 7945252567922245652
+        itemsLists: 020000000500000004000000
+    - rid: 4140704882675155039
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffffffffffff
-    - rid: 7945252567922245653
+        itemsLists: 0200000000000000ffffffff
+    - rid: 4140704882675155040
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 02000000ffffffff
-    - rid: 7945252567922245654
+        itemsLists: 030000000500000005000000
+    - rid: 4140704882675155041
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 01000000ffffffff
-    - rid: 7945252567922245655
+        itemsLists: 010000000300000003000000
+    - rid: 4140704882675155042
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 04000000ffffffff
-    - rid: 7945252567922245656
+        itemsLists: 050000000200000000000000
+    - rid: 4140704882675155043
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 00000000ffffffff
+        itemsLists: 030000000500000004000000

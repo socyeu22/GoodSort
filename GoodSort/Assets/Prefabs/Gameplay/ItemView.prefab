@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_icon: {fileID: 78477683804212622}
   m_collider: {fileID: 4240682474393701014}
-  m_heightOffset: 0.2
+  m_heightOffset: 0.1
   m_layerIndex: 0
 --- !u!58 &4240682474393701014
 CircleCollider2D:
