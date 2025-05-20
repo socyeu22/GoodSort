@@ -19,6 +19,7 @@ namespace GameCore
 
         [SerializeField] private int m_layerIndex;
         private Vector3 m_oldPosition;
+        private bool m_isDragging;
         public int LayerIndex
         {
             get => m_layerIndex;
@@ -51,14 +52,26 @@ namespace GameCore
 
         public void OnMouseDown()
         {
+            if (LayerIndex != 1)
+            {
+                return;
+            }
+
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorld.z = 0f;
             m_dragOffset = transform.position - mouseWorld;
             m_oldPosition = transform.localPosition;
+            // Ensure dragged item renders on top of others
+            m_icon.sortingOrder = 100;
+            m_isDragging = true;
         }
 
         public void OnMouseDrag()
         {
+            if (!m_isDragging)
+            {
+                return;
+            }
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorld.z = 0f;
             Vector3 newPos = mouseWorld + m_dragOffset;
@@ -107,20 +120,20 @@ namespace GameCore
         
         public void OnMouseUp()
         {
-            // Check the Shelf View Collide - If Null then Return 0 Else Shelf View Receive
-            if (m_curShelfCollider != null && m_curSlotCollider != null)
+            if (!m_isDragging)
             {
-                if (m_curShelfCollider.TryAddToShelf(this, m_curSlotCollider))
-                {
-                    Vector2Int startPos = m_curShelf.Position;
-                    m_curShelf.RemoveFromShelf(this);
-                    m_curShelf = m_curShelfCollider;
-                    m_updateBoardChange?.Invoke(m_id, startPos, m_curShelfCollider.Position);
-                }
-                else
-                {
-                    transform.localPosition = m_oldPosition;
-                }
+                return;
+            }
+            m_isDragging = false;
+            // Reset order after dragging
+            m_icon.sortingOrder = 10 - m_layerIndex;
+
+            if (m_curShelfCollider != null && m_curShelfCollider.TryAddToShelf(this))
+            {
+                Vector2Int startPos = m_curShelf.Position;
+                m_curShelf.RemoveFromShelf(this);
+                m_curShelf = m_curShelfCollider;
+                m_updateBoardChange?.Invoke(m_id, startPos, m_curShelfCollider.Position);
             }
             else
             {

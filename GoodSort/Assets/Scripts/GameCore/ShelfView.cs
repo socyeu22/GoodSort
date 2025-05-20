@@ -106,6 +106,28 @@ namespace GameCore
             return true;
         }
 
+        public bool TryAddToShelf(ItemView item)
+        {
+            if (m_items.First().Value.Count == 3)
+            {
+                return false;
+            }
+
+            CircleCollider2D[] order = { midSlot, rightSlot, leftSlot };
+            foreach (var slot in order)
+            {
+                if (slot != null && m_slotPositions.TryGetValue(slot, out var pos))
+                {
+                    if (m_positionPlaced.Contains(pos))
+                    {
+                        return TryAddToShelf(item, slot);
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public void RemoveFromShelf(ItemView item)
         {
             if (m_items.First().Value.Contains(item))
