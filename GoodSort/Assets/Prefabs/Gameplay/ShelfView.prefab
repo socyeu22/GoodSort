@@ -240,9 +240,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_offsetDistance: 0.8
-  midCollider: {fileID: 1258990504343823394}
-  rightCollider: {fileID: 6522151115415356153}
-  leftCollider: {fileID: 3191826616161233825}
+  midSlot: {fileID: 1258990504343823394}
+  rightSlot: {fileID: 6522151115415356153}
+  leftSlot: {fileID: 3191826616161233825}
 --- !u!61 &2322635240671724839
 BoxCollider2D:
   m_ObjectHideFlags: 0
