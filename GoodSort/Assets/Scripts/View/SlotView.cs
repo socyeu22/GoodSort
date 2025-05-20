@@ -1,29 +1,40 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCore
 {
     public class SlotView : MonoBehaviour
     {
-        private readonly List<ItemView> m_items = new List<ItemView>();
-        public IReadOnlyList<ItemView> Items => m_items;
+        [SerializeField] private SlotData m_slotData = new SlotData();
+        public SlotData SlotData
+        {
+            get => m_slotData;
+            set => m_slotData = value;
+        }
 
         public virtual void AddItem(ItemView item)
         {
-            if (!m_items.Contains(item))
+            item.transform.SetParent(transform);
+            item.LayerIndex = transform.childCount;
+
+            if (m_slotData.itemsLists.Count == 0)
             {
-                m_items.Add(item);
-                item.transform.SetParent(transform);
-                item.LayerIndex = m_items.Count;
+                m_slotData.itemsLists.Add(item.Id);
+            }
+            else
+            {
+                m_slotData.itemsLists[0] = item.Id;
             }
         }
 
         public bool RemoveItem(ItemView item)
         {
-            int index = m_items.IndexOf(item);
-            if (index >= 0)
+            if (item.transform.parent == transform)
             {
-                m_items.RemoveAt(index);
+                item.transform.SetParent(null);
+                if (m_slotData.itemsLists.Count > 0)
+                {
+                    m_slotData.itemsLists[0] = -1;
+                }
                 RearrangeItems();
                 return true;
             }
@@ -32,11 +43,12 @@ namespace GameCore
 
         private void RearrangeItems()
         {
-            for (int i = 0; i < m_items.Count; i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                if (m_items[i] != null)
+                var item = transform.GetChild(i).GetComponent<ItemView>();
+                if (item != null)
                 {
-                    m_items[i].LayerIndex = i + 1;
+                    item.LayerIndex = i + 1;
                 }
             }
         }

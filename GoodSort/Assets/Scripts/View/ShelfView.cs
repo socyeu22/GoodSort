@@ -66,6 +66,8 @@ namespace GameCore
                     m_availableSlots.RemoveAt(0);
                 }
 
+                targetSlot.SlotData = slotData;
+
                 for (var i = 0; i < slotData.itemsLists.Count; i++)
                 {
                     var items = slotData.itemsLists[i];
