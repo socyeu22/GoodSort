@@ -32,11 +32,12 @@ namespace GameCore
                 for (var i = 0; i < slotData.itemsLists.Count; i++)
                 {
                     var items = slotData.itemsLists[i];
-                    if(items == -1) continue;
+                    if (items == -1) continue;
+                    var itemData = GameConfig.Instance.itemDataConfig.GetItemDataByID(items);
                     var item = Instantiate(itemPrefab, transform);
                     item.transform.localPosition = new Vector3(posX, 0, 0);
-                    item.InitItem(items, i + 1, this, onStageBoardChange);
-                    if(m_items.ContainsKey(i) == false) m_items.Add(i, new List<ItemView>(){item});
+                    item.InitItem(itemData, i + 1, this, onStageBoardChange);
+                    if (m_items.ContainsKey(i) == false) m_items.Add(i, new List<ItemView>() { item });
                     else m_items[i].Add(item);
                 }
             }
