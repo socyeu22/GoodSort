@@ -1,10 +1,11 @@
 ﻿using System;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace GameCore
 {
-    public class ItemView : MonoBehaviour
+    public class ItemView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         private int m_id;
         public int Id => m_id;
@@ -56,14 +57,14 @@ namespace GameCore
             m_icon.enabled = data.visualType == GameCore.ItemVisualType.FullDisplay;
         }
 
-        public void OnMouseDown()
+        public void OnBeginDrag(PointerEventData eventData)
         {
             if (LayerIndex != 1)
             {
                 return;
             }
 
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(eventData.position);
             mouseWorld.z = 0f;
             m_dragOffset = transform.position - mouseWorld;
             m_oldPosition = transform.localPosition;
@@ -72,13 +73,13 @@ namespace GameCore
             m_isDragging = true;
         }
 
-        public void OnMouseDrag()
+        public void OnDrag(PointerEventData eventData)
         {
             if (!m_isDragging)
             {
                 return;
             }
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(eventData.position);
             mouseWorld.z = 0f;
             Vector3 newPos = mouseWorld + m_dragOffset;
             transform.position = newPos;
@@ -123,7 +124,7 @@ namespace GameCore
             }
         }
         
-        public void OnMouseUp()
+        public void OnEndDrag(PointerEventData eventData)
         {
             if (!m_isDragging)
             {
