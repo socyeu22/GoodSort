@@ -85,9 +85,10 @@ namespace GameCore
             {
                 if (m_curShelfCollider.TryAddToShelf(this))
                 {
+                    Vector2Int startPos = m_curShelf.Position;
                     m_curShelf.RemoveFromShelf(this);
                     m_curShelf = m_curShelfCollider;
-                    m_updateBoardChange?.Invoke(m_id, m_curShelfCollider.Position, m_curShelfCollider.Position);
+                    m_updateBoardChange?.Invoke(m_id, startPos, m_curShelfCollider.Position);
                 }
                 else
                 {
