@@ -41,6 +41,9 @@ namespace GameCore
         [InfoBox("Định nghĩa itemsLists cho Dispenser tại SlotData đầu tiên.", InfoMessageType.None, VisibleIf = "@this.shelfType == ShelfType.Dispenser && this.slotDatas != null && this.slotDatas.Count > 0")]
         public List<SlotData> slotDatas;
 
+        public CircleCollider2D midSlot;
+        public CircleCollider2D rightSlot;
+        public CircleCollider2D leftSlot;
 
         // Constructor tiện lợi (tùy chọn)
         public ShelfData(ShelfType type, Vector2Int pos)
