@@ -7,6 +7,7 @@ namespace GameCore
     public class ItemView : MonoBehaviour
     {
         private int m_id;
+        private ItemData m_itemData;
         [SerializeField] private SpriteRenderer m_icon;
         [SerializeField] private Collider2D m_collider;
         [SerializeField] private float m_heightOffset;
@@ -35,14 +36,16 @@ namespace GameCore
             }
         }
     
-        public void InitItem(int idItem, int layerIndex, ShelfView shelfView, Action<int, Vector2Int, Vector2Int> updateBoardChange)
+        public void InitItem(ItemData data, int layerIndex, ShelfView shelfView, Action<int, Vector2Int, Vector2Int> updateBoardChange)
         {
             m_updateBoardChange = updateBoardChange;
-            m_id = idItem;
+            m_itemData = data;
+            m_id = data.id;
             m_curShelf = shelfView;
             LayerIndex = layerIndex;
-            
+
             m_icon.sprite = GameConfig.Instance.itemIconConfig.GetItemIconByID(m_id);
+            m_icon.enabled = data.visualType == ItemVisualType.FullDisplay;
         }
 
         public void OnMouseDown()
