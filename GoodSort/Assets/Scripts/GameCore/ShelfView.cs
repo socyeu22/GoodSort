@@ -14,6 +14,10 @@ namespace GameCore
         private List<float> m_positionPlaced = new List<float>(4);
         
         public Vector2Int Position => m_position;
+        
+        public GameObject midCollider;
+        public GameObject rightCollider;
+        public GameObject leftCollider;
 
         public void InitShelf(ShelfData shelfData, Action<int, Vector2Int, Vector2Int> onStageBoardChange)
         {
@@ -21,7 +25,7 @@ namespace GameCore
             {
                 m_positionPlaced.Add((i - (shelfData.slotDatas.Count - 1) / 2f) * m_offsetDistance);
             }
-            
+
             var itemPrefab = GameConfig.Instance.prefabConfig.itemPrefab;
             // Init Item - Add to List
 
