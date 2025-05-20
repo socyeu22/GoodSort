@@ -15,9 +15,9 @@ namespace GameCore
         
         public Vector2Int Position => m_position;
         
-        public MidSlotView midSlot;
-        public MidSlotView rightSlot;
-        public MidSlotView leftSlot;
+        public GameObject midSlot;
+        public GameObject rightSlot;
+        public GameObject leftSlot;
         private Dictionary<SlotView, float> m_slotPositions = new Dictionary<SlotView, float>(3);
 
         public void InitShelf(ShelfData shelfData, Action<int, Vector2Int, Vector2Int> onStageBoardChange)
@@ -31,22 +31,22 @@ namespace GameCore
             if (leftSlot != null)
             {
                 float leftPos = leftSlot.transform.localPosition.x;
-                m_slotPositions[leftSlot] = leftPos;
-                m_availableSlots.Add(leftSlot);
+                m_slotPositions[leftSlot.GetComponent<MidSlotView>()] = leftPos;
+                m_availableSlots.Add(leftSlot.GetComponent<MidSlotView>());
             }
 
             if (midSlot != null)
             {
                 float midPos = midSlot.transform.localPosition.x;
-                m_slotPositions[midSlot] = midPos;
-                m_availableSlots.Add(midSlot);
+                m_slotPositions[midSlot.GetComponent<MidSlotView>()] = midPos;
+                m_availableSlots.Add(midSlot.GetComponent<MidSlotView>());
             }
 
             if (rightSlot != null)
             {
                 float rightPos = rightSlot.transform.localPosition.x;
-                m_slotPositions[rightSlot] = rightPos;
-                m_availableSlots.Add(rightSlot);
+                m_slotPositions[rightSlot.GetComponent<MidSlotView>()] = rightPos;
+                m_availableSlots.Add(rightSlot.GetComponent<MidSlotView>());
             }
 
             var itemPrefab = GameConfig.Instance.prefabConfig.itemPrefab;
@@ -55,10 +55,10 @@ namespace GameCore
             foreach (var slotData in shelfData.slotDatas)
             {
                 SlotView targetSlot;
-                if (shelfData.shelfType == ShelfType.Dispenser && midSlot != null && m_slotPositions.ContainsKey(midSlot))
+                if (shelfData.shelfType == ShelfType.Dispenser && midSlot != null && m_slotPositions.ContainsKey(midSlot.GetComponent<MidSlotView>()))
                 {
                     // Always place items at the middle slot for Dispenser shelves
-                    targetSlot = midSlot;
+                    targetSlot = midSlot.GetComponent<MidSlotView>();
                 }
                 else
                 {
@@ -115,7 +115,7 @@ namespace GameCore
                 return false;
             }
 
-            SlotView[] order = { midSlot, rightSlot, leftSlot };
+            SlotView[] order = { midSlot.GetComponent<MidSlotView>(), rightSlot.GetComponent<MidSlotView>(), leftSlot.GetComponent<MidSlotView>() };
             foreach (var slot in order)
             {
                 if (slot != null && m_availableSlots.Contains(slot))
