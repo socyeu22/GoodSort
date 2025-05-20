@@ -8,10 +8,10 @@ namespace GameCore
 {
     public class ShelfView : MonoBehaviour
     {
-        private Dictionary<int, List<ItemView>> m_items = new(8);
+        private Dictionary<int, List<ItemView>> m_items = new Dictionary<int, List<ItemView>>(8);
         private Vector2Int m_position;
         [SerializeField] private float m_offsetDistance;
-        private List<float> m_positionPlaced = new(4);
+        private List<float> m_positionPlaced = new List<float>(4);
         
         public Vector2Int Position => m_position;
 

@@ -6,7 +6,7 @@ namespace GameCore
 {
     public class BoardView : MonoBehaviour
     {
-        private List<ShelfView> m_shelfViews = new();
+        private List<ShelfView> m_shelfViews = new List<ShelfView>();
         private BoardController m_boardController;
         [SerializeField] private Transform m_boardTransform;
         [SerializeField] private Vector2 m_offset;

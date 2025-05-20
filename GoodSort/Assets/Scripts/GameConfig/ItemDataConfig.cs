@@ -8,7 +8,7 @@ namespace DefaultNamespace
     [CreateAssetMenu(fileName = "ItemDataConfig", menuName = "GameConfig/ItemDataConfig")]
     public class ItemDataConfig : ScriptableObject
     {
-        public List<ItemData> items = new();
+        public List<ItemData> items = new List<ItemData>();
 
         public ItemData GetItemDataByID(int id)
         {
