@@ -62,17 +62,21 @@ namespace GameCore
             mouseWorld.z = 0f;
             Vector3 newPos = mouseWorld + m_dragOffset;
             transform.position = newPos;
+        }
 
-            // Raycast from the new item position
-            RaycastHit2D hit = Physics2D.Raycast(newPos, Vector2.down, Mathf.Infinity);
-
-            if (hit.collider != null)
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            ShelfView shelf = other.GetComponentInParent<ShelfView>();
+            if (shelf != null)
             {
-                ShelfView shelf = hit.collider.GetComponent<ShelfView>();
-                Debug.Log(shelf);
                 m_curShelfCollider = shelf;
             }
-            else
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            ShelfView shelf = other.GetComponentInParent<ShelfView>();
+            if (shelf != null && shelf == m_curShelfCollider)
             {
                 m_curShelfCollider = null;
             }
