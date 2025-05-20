@@ -6,7 +6,7 @@ namespace DefaultNamespace
     [CreateAssetMenu(fileName = "Prefab Config", menuName = "GameConfig/Prefab Config")]
     public class PrefabConfig : ScriptableObject
     {
-        public ItemView itemPrefab;
+        public ItemController itemPrefab;
         public ShelfView shelfPrefab;
     }
 }

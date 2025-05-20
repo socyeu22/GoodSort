@@ -8,7 +8,7 @@ namespace GameCore
 {
     public class ShelfView : MonoBehaviour
     {
-        private Dictionary<int, List<ItemView>> m_items = new Dictionary<int, List<ItemView>>(8);
+        private Dictionary<int, List<ItemController>> m_items = new Dictionary<int, List<ItemController>>(8);
         private Vector2Int m_position;
         [SerializeField] private float m_offsetDistance;
         private List<SlotView> m_availableSlots = new List<SlotView>(3);
@@ -75,14 +75,15 @@ namespace GameCore
                     var itemData = GameConfig.Instance.itemDataConfig.GetItemDataByID(items);
                     var item = Instantiate(itemPrefab, targetSlot.transform);
                     item.transform.localPosition = new Vector3(0, 0, 0);
-                    item.InitItem(itemData, i + 1, this, targetSlot, onStageBoardChange);
-                    if (m_items.ContainsKey(i) == false) m_items.Add(i, new List<ItemView>() { item });
-                    else m_items[i].Add(item);
+                    var controller = item.GetComponent<ItemController>();
+                    controller.InitItem(itemData, i + 1, this, targetSlot, onStageBoardChange);
+                    if (m_items.ContainsKey(i) == false) m_items.Add(i, new List<ItemController>() { controller });
+                    else m_items[i].Add(controller);
                 }
             }
         }
 
-        public bool TryAddToShelf(ItemView item, SlotView slot)
+        public bool TryAddToShelf(ItemController item, SlotView slot)
         {
             if (m_items.First().Value.Count == 3)
             {
@@ -107,7 +108,7 @@ namespace GameCore
             return true;
         }
 
-        public bool TryAddToShelf(ItemView item)
+        public bool TryAddToShelf(ItemController item)
         {
             if (m_items.First().Value.Count == 3)
             {
@@ -126,7 +127,7 @@ namespace GameCore
             return false;
         }
 
-        public void RemoveFromShelf(ItemView item)
+        public void RemoveFromShelf(ItemController item)
         {
             if (m_items.First().Value.Contains(item))
             {
