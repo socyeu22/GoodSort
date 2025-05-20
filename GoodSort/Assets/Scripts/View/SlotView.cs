@@ -11,7 +11,7 @@ namespace GameCore
             set => m_slotData = value;
         }
 
-        public virtual void AddItem(ItemView item)
+        public virtual void AddItem(ItemController item)
         {
             item.transform.SetParent(transform);
             item.LayerIndex = transform.childCount;
@@ -26,7 +26,7 @@ namespace GameCore
             }
         }
 
-        public bool RemoveItem(ItemView item)
+        public bool RemoveItem(ItemController item)
         {
             if (item.transform.parent == transform)
             {
@@ -45,7 +45,7 @@ namespace GameCore
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                var item = transform.GetChild(i).GetComponent<ItemView>();
+                var item = transform.GetChild(i).GetComponent<ItemController>();
                 if (item != null)
                 {
                     item.LayerIndex = i + 1;
