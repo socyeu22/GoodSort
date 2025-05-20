@@ -40,20 +40,49 @@ namespace GameCore
                 }
             }
 
+            bool added = false;
             foreach (var slotData in shelfEndData.slotDatas)
             {
                 if (slotData.itemsLists[0] == -1)
                 {
                     slotData.itemsLists[0] = itemId;
-                    if (slotData.itemsLists.TrueForAll(id => id == itemId))
-                    {
-                        return true;
-                    }
-
-                    return false;
+                    added = true;
+                    break;
                 }
             }
-            return false;
+
+            if (!added) return false;
+
+            bool match = true;
+            foreach (var slot in shelfEndData.slotDatas)
+            {
+                if (slot.itemsLists[0] != itemId)
+                {
+                    match = false;
+                    break;
+                }
+            }
+
+            if (match)
+            {
+                foreach (var slot in shelfEndData.slotDatas)
+                {
+                    slot.itemsLists[0] = -1;
+                }
+
+                if (shelfEndData.IsFirstLayerEmpty)
+                {
+                    foreach (var slot in shelfEndData.slotDatas)
+                    {
+                        if (slot.itemsLists.Count > 1)
+                        {
+                            slot.itemsLists.RemoveAt(0);
+                        }
+                    }
+                }
+            }
+
+            return match;
         }
     }
 }
