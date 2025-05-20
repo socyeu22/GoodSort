@@ -12,6 +12,7 @@ namespace GameCore
         [SerializeField] private Collider2D m_collider;
         [SerializeField] private float m_heightOffset;
         private ShelfView m_curShelfCollider;
+        private CircleCollider2D m_curSlotCollider;
         private ShelfView m_curShelf;
         private Vector3 m_dragOffset;
         private Action<int, Vector2Int, Vector2Int> m_updateBoardChange;
@@ -69,25 +70,47 @@ namespace GameCore
             ShelfView shelf = other.GetComponentInParent<ShelfView>();
             if (shelf != null)
             {
-                m_curShelfCollider = shelf;
+                var circle = other as CircleCollider2D;
+                if (circle != null &&
+                    (circle == shelf.leftSlot || circle == shelf.midSlot || circle == shelf.rightSlot))
+                {
+                    m_curShelfCollider = shelf;
+                    m_curSlotCollider = circle;
+                }
+                else
+                {
+                    m_curShelfCollider = shelf;
+                }
             }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             ShelfView shelf = other.GetComponentInParent<ShelfView>();
-            if (shelf != null && shelf == m_curShelfCollider)
+            if (shelf != null)
             {
-                m_curShelfCollider = null;
+                var circle = other as CircleCollider2D;
+                if (circle != null && (circle == shelf.leftSlot || circle == shelf.midSlot || circle == shelf.rightSlot))
+                {
+                    if (circle == m_curSlotCollider)
+                    {
+                        m_curSlotCollider = null;
+                    }
+                }
+                else if (shelf == m_curShelfCollider)
+                {
+                    m_curShelfCollider = null;
+                    m_curSlotCollider = null;
+                }
             }
         }
         
         public void OnMouseUp()
         {
             // Check the Shelf View Collide - If Null then Return 0 Else Shelf View Receive
-            if (m_curShelfCollider != null)
+            if (m_curShelfCollider != null && m_curSlotCollider != null)
             {
-                if (m_curShelfCollider.TryAddToShelf(this))
+                if (m_curShelfCollider.TryAddToShelf(this, m_curSlotCollider))
                 {
                     Vector2Int startPos = m_curShelf.Position;
                     m_curShelf.RemoveFromShelf(this);

@@ -15,15 +15,39 @@ namespace GameCore
         
         public Vector2Int Position => m_position;
         
-        public GameObject midCollider;
-        public GameObject rightCollider;
-        public GameObject leftCollider;
+        public CircleCollider2D midSlot;
+        public CircleCollider2D rightSlot;
+        public CircleCollider2D leftSlot;
+
+        private Dictionary<CircleCollider2D, float> m_slotPositions = new Dictionary<CircleCollider2D, float>(3);
 
         public void InitShelf(ShelfData shelfData, Action<int, Vector2Int, Vector2Int> onStageBoardChange)
         {
-            for (var i = 0; i < shelfData.slotDatas.Count; i++)
+            m_slotPositions.Clear();
+            m_positionPlaced.Clear();
+            m_position = shelfData.position;
+
+            // Collect slot positions based on their local position in the prefab
+            // Order: left - mid - right to match visual layout
+            if (leftSlot != null)
             {
-                m_positionPlaced.Add((i - (shelfData.slotDatas.Count - 1) / 2f) * m_offsetDistance);
+                float leftPos = leftSlot.transform.localPosition.x;
+                m_slotPositions[leftSlot] = leftPos;
+                m_positionPlaced.Add(leftPos);
+            }
+
+            if (midSlot != null)
+            {
+                float midPos = midSlot.transform.localPosition.x;
+                m_slotPositions[midSlot] = midPos;
+                m_positionPlaced.Add(midPos);
+            }
+
+            if (rightSlot != null)
+            {
+                float rightPos = rightSlot.transform.localPosition.x;
+                m_slotPositions[rightSlot] = rightPos;
+                m_positionPlaced.Add(rightPos);
             }
 
             var itemPrefab = GameConfig.Instance.prefabConfig.itemPrefab;
@@ -47,19 +71,29 @@ namespace GameCore
             }
         }
 
-        public bool TryAddToShelf(ItemView item)
+        public bool TryAddToShelf(ItemView item, CircleCollider2D slot)
         {
             if (m_items.First().Value.Count == 3)
             {
                 return false;
             }
-            
+
+            if (slot == null || m_slotPositions.ContainsKey(slot) == false)
+            {
+                return false;
+            }
+
+            float targetX = m_slotPositions[slot];
+            if (!m_positionPlaced.Contains(targetX))
+            {
+                return false;
+            }
+
             item.transform.SetParent(this.transform);
-            var posX = m_positionPlaced.Min(pX => Math.Abs(pX - item.transform.localPosition.x));
-            item.transform.localPosition = new Vector3(posX, 0, 0);
+            item.transform.localPosition = new Vector3(targetX, 0, 0);
             m_items.First().Value.Add(item);
-            m_positionPlaced.Remove(posX);
-            
+            m_positionPlaced.Remove(targetX);
+
             return true;
         }
 
