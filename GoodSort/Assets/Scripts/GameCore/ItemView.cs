@@ -10,7 +10,7 @@ namespace GameCore
         [SerializeField] private SpriteRenderer m_icon;
         [SerializeField] private Collider2D m_collider;
         [SerializeField] private float m_heightOffset;
-        private ShelfView m_curShelfCollide;
+        private ShelfView m_curShelfCollider;
         private ShelfView m_curShelf;
         private Vector3 m_dragOffset;
         private Action<int, Vector2Int, Vector2Int> m_updateBoardChange;
@@ -67,24 +67,24 @@ namespace GameCore
             {
                 ShelfView shelf = hit.collider.GetComponent<ShelfView>();
                 Debug.Log(shelf);
-                m_curShelfCollide = shelf;
+                m_curShelfCollider = shelf;
             }
             else
             {
-                m_curShelfCollide = null;
+                m_curShelfCollider = null;
             }
         }
         
         public void OnMouseUp()
         {
             // Check the Shelf View Collide - If Null then Return 0 Else Shelf View Receive
-            if (m_curShelfCollide != null)
+            if (m_curShelfCollider != null)
             {
-                if (m_curShelfCollide.TryAddToShelf(this))
+                if (m_curShelfCollider.TryAddToShelf(this))
                 {
                     m_curShelf.RemoveFromShelf(this);
-                    m_curShelf = m_curShelfCollide;
-                    m_updateBoardChange?.Invoke(m_id, m_curShelfCollide.Position, m_curShelfCollide.Position);
+                    m_curShelf = m_curShelfCollider;
+                    m_updateBoardChange?.Invoke(m_id, m_curShelfCollider.Position, m_curShelfCollider.Position);
                 }
                 else
                 {

@@ -1,23 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using DefaultNamespace; // Đảm bảo namespace này đúng
-using GameCore;         // Đảm bảo namespace này đúng - SẼ DÙNG ĐỊNH NGHĨA TỪ ĐÂY
+using DefaultNamespace;
+using GameCore;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization; // Cần cho OdinSerialize
+using Sirenix.Serialization;
 using UnityEditor;
 using UnityEngine;
 using System.Text;
 
-// Đổi tên file thành LevelData_Flexible.cs khi lưu
 [CreateAssetMenu(fileName = "LevelData_Flexible", menuName = "Game/LevelData (Flexible Layout)")]
 public class LevelData_Flexible : ScriptableObject
 {
-    // Bỏ Vector2Int size
-
     [Tooltip("Danh sách tất cả các kệ trong màn chơi. Người thiết kế tự thêm và cấu hình.")]
     [ListDrawerSettings(NumberOfItemsPerPage = 10, Expanded = true)]
-    // SỬA LỖI: Bỏ [SerializeReference] vì ShelfData là struct
     [OdinSerialize] // Giữ lại OdinSerialize nếu dùng Odin
     [PropertyOrder(0)]
     public List<ShelfData> shelfList = new List<ShelfData>();

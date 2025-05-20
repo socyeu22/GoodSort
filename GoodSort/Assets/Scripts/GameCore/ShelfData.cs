@@ -8,7 +8,7 @@ namespace GameCore
     /// <summary>
     /// Phân loại các loại kệ trong màn chơi.
     /// </summary>
-    [System.Serializable] // Cần để Unity serialize enum này
+    [Serializable] // Cần để Unity serialize enum này
     public enum ShelfType
     {
         Normal,    // Kệ thường, chứa 3 SlotData, được thuật toán điền item ngẫu nhiên.
