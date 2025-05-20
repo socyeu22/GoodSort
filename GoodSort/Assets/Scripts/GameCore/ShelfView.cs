@@ -55,8 +55,17 @@ namespace GameCore
 
             foreach (var slotData in shelfData.slotDatas)
             {
-                var posX = m_positionPlaced.First();
-                m_positionPlaced.RemoveAt(0);
+                float posX;
+                if (shelfData.shelfType == ShelfType.Dispenser && midSlot != null && m_slotPositions.ContainsKey(midSlot))
+                {
+                    // Always place items at the middle slot for Dispenser shelves
+                    posX = m_slotPositions[midSlot];
+                }
+                else
+                {
+                    posX = m_positionPlaced.First();
+                    m_positionPlaced.RemoveAt(0);
+                }
                 for (var i = 0; i < slotData.itemsLists.Count; i++)
                 {
                     var items = slotData.itemsLists[i];
