@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7884733906573572587}
   - component: {fileID: 5193704451915083927}
   - component: {fileID: 6013699259052556829}
+  - component: {fileID: 5810384625692680624}
   m_Layer: 0
   m_Name: Mid_Slot
   m_TagString: Untagged
@@ -95,6 +96,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5810384625692680624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258990504343823394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341be49a5374439aa5d719838c1649fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3191826616161233825
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +119,7 @@ GameObject:
   - component: {fileID: 6358837275295302578}
   - component: {fileID: 4858460501863003066}
   - component: {fileID: 8167005469386192255}
+  - component: {fileID: 4338214541874661683}
   m_Layer: 0
   m_Name: Left_Slot
   m_TagString: Untagged
@@ -190,6 +204,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4338214541874661683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191826616161233825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341be49a5374439aa5d719838c1649fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5929960608065952178
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,9 +266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_offsetDistance: 0.8
-  midSlot: {fileID: 1258990504343823394}
-  rightSlot: {fileID: 6522151115415356153}
-  leftSlot: {fileID: 3191826616161233825}
+  midSlot: {fileID: 5810384625692680624}
+  rightSlot: {fileID: 7505363327833551094}
+  leftSlot: {fileID: 4338214541874661683}
 --- !u!61 &2322635240671724839
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -299,6 +325,7 @@ GameObject:
   - component: {fileID: 6876820329283207846}
   - component: {fileID: 5760168667791896111}
   - component: {fileID: 6892148645106394253}
+  - component: {fileID: 7505363327833551094}
   m_Layer: 0
   m_Name: Right_Slot
   m_TagString: Untagged
@@ -383,6 +410,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7505363327833551094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6522151115415356153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341be49a5374439aa5d719838c1649fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9016538679851834227
 GameObject:
   m_ObjectHideFlags: 0
