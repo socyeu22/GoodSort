@@ -15,11 +15,11 @@ namespace GameCore
         
         public Vector2Int Position => m_position;
         
-        public CircleCollider2D midSlot;
-        public CircleCollider2D rightSlot;
-        public CircleCollider2D leftSlot;
+        public GameObject midSlot;
+        public GameObject rightSlot;
+        public GameObject leftSlot;
 
-        private Dictionary<CircleCollider2D, float> m_slotPositions = new Dictionary<CircleCollider2D, float>(3);
+        private Dictionary<GameObject, float> m_slotPositions = new Dictionary<GameObject, float>(3);
 
         public void InitShelf(ShelfData shelfData, Action<int, Vector2Int, Vector2Int> onStageBoardChange)
         {
@@ -80,7 +80,7 @@ namespace GameCore
             }
         }
 
-        public bool TryAddToShelf(ItemView item, CircleCollider2D slot)
+        public bool TryAddToShelf(ItemView item, GameObject slot)
         {
             if (m_items.First().Value.Count == 3)
             {
@@ -113,7 +113,7 @@ namespace GameCore
                 return false;
             }
 
-            CircleCollider2D[] order = { midSlot, rightSlot, leftSlot };
+            GameObject[] order = { midSlot, rightSlot, leftSlot };
             foreach (var slot in order)
             {
                 if (slot != null && m_slotPositions.TryGetValue(slot, out var pos))
