@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341be49a5374439aa5d719838c1649fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_slotData:
+    itemsLists: 
 --- !u!1 &3191826616161233825
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341be49a5374439aa5d719838c1649fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_slotData:
+    itemsLists: 
 --- !u!1 &5929960608065952178
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +230,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8743488137482897569}
   - component: {fileID: 6763910261516806027}
-  - component: {fileID: 2322635240671724839}
   m_Layer: 0
   m_Name: ShelfView
   m_TagString: Untagged
@@ -269,51 +272,6 @@ MonoBehaviour:
   midSlot: {fileID: 5810384625692680624}
   rightSlot: {fileID: 7505363327833551094}
   leftSlot: {fileID: 4338214541874661683}
---- !u!61 &2322635240671724839
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5929960608065952178}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0019469261, y: 0.7525376}
-  m_SpriteTilingProperty:
-    border: {x: 1.0285715, y: 0.87857145, z: 0.9035714, w: 0.93214285}
-    pivot: {x: 0.5, y: 0.22146532}
-    oldSize: {x: 3.6571429, y: 3.6571429}
-    newSize: {x: 3.6571429, y: 3.6571429}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.308216, y: 2.2199028}
-  m_EdgeRadius: 0
 --- !u!1 &6522151115415356153
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341be49a5374439aa5d719838c1649fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_slotData:
+    itemsLists: 
 --- !u!1 &9016538679851834227
 GameObject:
   m_ObjectHideFlags: 0
