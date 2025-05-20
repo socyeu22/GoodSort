@@ -8,46 +8,53 @@ namespace GameCore
 {
     public class ShelfView : MonoBehaviour
     {
-        private Dictionary<int, List<ItemController>> m_items = new Dictionary<int, List<ItemController>>(8);
+        private const int MaxItemsPerLayer = 3;
+
+        private readonly Dictionary<int, List<ItemController>> m_items = new Dictionary<int, List<ItemController>>(8);
+        private readonly List<SlotView> m_availableSlots = new List<SlotView>(3);
+        private readonly List<SlotView> m_slots = new List<SlotView>(3);
+
         private Vector2Int m_position;
         [SerializeField] private float m_offsetDistance;
-        private List<SlotView> m_availableSlots = new List<SlotView>(3);
-        
+
         public Vector2Int Position => m_position;
-        
-        public GameObject midSlot;
-        public GameObject rightSlot;
-        public GameObject leftSlot;
-        private Dictionary<SlotView, float> m_slotPositions = new Dictionary<SlotView, float>(3);
+
+        [SerializeField] private MidSlotView m_midSlot;
+        [SerializeField] private MidSlotView m_rightSlot;
+        [SerializeField] private MidSlotView m_leftSlot;
+
+        private List<ItemController> TopLayer => m_items.First().Value;
+
+        private void AddSlot(SlotView slot)
+        {
+            if (slot == null)
+            {
+                return;
+            }
+            m_slots.Add(slot);
+            m_availableSlots.Add(slot);
+        }
+
+        private SlotView GetNextAvailableSlot()
+        {
+            if (m_availableSlots.Count == 0)
+            {
+                return null;
+            }
+            var slot = m_availableSlots[0];
+            m_availableSlots.RemoveAt(0);
+            return slot;
+        }
 
         public void InitShelf(ShelfData shelfData, Action<int, Vector2Int, Vector2Int> onStageBoardChange)
         {
-            m_slotPositions.Clear();
+            m_slots.Clear();
             m_availableSlots.Clear();
             m_position = shelfData.position;
 
-            // Collect slot positions based on their local position in the prefab
-            // Order: left - mid - right to match visual layout
-            if (leftSlot != null)
-            {
-                float leftPos = leftSlot.transform.localPosition.x;
-                m_slotPositions[leftSlot.GetComponent<MidSlotView>()] = leftPos;
-                m_availableSlots.Add(leftSlot.GetComponent<MidSlotView>());
-            }
-
-            if (midSlot != null)
-            {
-                float midPos = midSlot.transform.localPosition.x;
-                m_slotPositions[midSlot.GetComponent<MidSlotView>()] = midPos;
-                m_availableSlots.Add(midSlot.GetComponent<MidSlotView>());
-            }
-
-            if (rightSlot != null)
-            {
-                float rightPos = rightSlot.transform.localPosition.x;
-                m_slotPositions[rightSlot.GetComponent<MidSlotView>()] = rightPos;
-                m_availableSlots.Add(rightSlot.GetComponent<MidSlotView>());
-            }
+            AddSlot(m_leftSlot);
+            AddSlot(m_midSlot);
+            AddSlot(m_rightSlot);
 
             var itemPrefab = GameConfig.Instance.prefabConfig.itemPrefab;
             // Init Item - Add to List
@@ -55,15 +62,15 @@ namespace GameCore
             foreach (var slotData in shelfData.slotDatas)
             {
                 SlotView targetSlot;
-                if (shelfData.shelfType == ShelfType.Dispenser && midSlot != null && m_slotPositions.ContainsKey(midSlot.GetComponent<MidSlotView>()))
+                if (shelfData.shelfType == ShelfType.Dispenser && m_midSlot != null)
                 {
                     // Always place items at the middle slot for Dispenser shelves
-                    targetSlot = midSlot.GetComponent<MidSlotView>();
+                    targetSlot = m_midSlot;
+                    m_availableSlots.Remove(m_midSlot);
                 }
                 else
                 {
-                    targetSlot = m_availableSlots.First();
-                    m_availableSlots.RemoveAt(0);
+                    targetSlot = GetNextAvailableSlot();
                 }
 
                 targetSlot.SlotData = slotData;
@@ -74,23 +81,29 @@ namespace GameCore
                     if (items == -1) continue;
                     var itemData = GameConfig.Instance.itemDataConfig.GetItemDataByID(items);
                     var item = Instantiate(itemPrefab, targetSlot.transform);
-                    item.transform.localPosition = new Vector3(0, 0, 0);
+                    item.transform.localPosition = Vector3.zero;
                     var controller = item.GetComponent<ItemController>();
                     controller.InitItem(itemData, i + 1, this, targetSlot, onStageBoardChange);
-                    if (m_items.ContainsKey(i) == false) m_items.Add(i, new List<ItemController>() { controller });
-                    else m_items[i].Add(controller);
+                    if (!m_items.ContainsKey(i))
+                    {
+                        m_items.Add(i, new List<ItemController> { controller });
+                    }
+                    else
+                    {
+                        m_items[i].Add(controller);
+                    }
                 }
             }
         }
 
         public bool TryAddToShelf(ItemController item, SlotView slot)
         {
-            if (m_items.First().Value.Count == 3)
+            if (TopLayer.Count == MaxItemsPerLayer)
             {
                 return false;
             }
 
-            if (slot == null || m_slotPositions.ContainsKey(slot) == false)
+            if (slot == null || !m_slots.Contains(slot))
             {
                 return false;
             }
@@ -102,7 +115,7 @@ namespace GameCore
 
             slot.AddItem(item);
             item.SetShelfAndSlot(this, slot);
-            m_items.First().Value.Add(item);
+            TopLayer.Add(item);
             m_availableSlots.Remove(slot);
 
             return true;
@@ -110,12 +123,12 @@ namespace GameCore
 
         public bool TryAddToShelf(ItemController item)
         {
-            if (m_items.First().Value.Count == 3)
+            if (TopLayer.Count == MaxItemsPerLayer)
             {
                 return false;
             }
 
-            SlotView[] order = { midSlot.GetComponent<MidSlotView>(), rightSlot.GetComponent<MidSlotView>(), leftSlot.GetComponent<MidSlotView>() };
+            SlotView[] order = { m_midSlot, m_rightSlot, m_leftSlot };
             foreach (var slot in order)
             {
                 if (slot != null && m_availableSlots.Contains(slot))
@@ -129,9 +142,9 @@ namespace GameCore
 
         public void RemoveFromShelf(ItemController item)
         {
-            if (m_items.First().Value.Contains(item))
+            if (TopLayer.Contains(item))
             {
-                m_items.First().Value.Remove(item);
+                TopLayer.Remove(item);
                 if (item.CurrentSlot != null)
                 {
                     item.CurrentSlot.RemoveItem(item);
@@ -140,7 +153,7 @@ namespace GameCore
                         m_availableSlots.Add(item.CurrentSlot);
                     }
                 }
-                if (m_items.First().Value.Count == 0)
+                if (TopLayer.Count == 0)
                 {
                     RemoveLayerTop();
                 }
@@ -151,7 +164,7 @@ namespace GameCore
         {
             var cacheList = m_items.ToList();
 
-            foreach (var itemView in m_items.First().Value)
+            foreach (var itemView in TopLayer)
             {
                 if (itemView.CurrentSlot != null)
                 {
