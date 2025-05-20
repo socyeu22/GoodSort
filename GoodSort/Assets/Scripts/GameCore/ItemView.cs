@@ -45,7 +45,7 @@ namespace GameCore
             LayerIndex = layerIndex;
 
             m_icon.sprite = GameConfig.Instance.itemIconConfig.GetItemIconByID(m_id);
-            m_icon.enabled = data.visualType == ItemVisualType.FullDisplay;
+            m_icon.enabled = data.visualType == GameCore.ItemVisualType.FullDisplay;
         }
 
         public void OnMouseDown()
