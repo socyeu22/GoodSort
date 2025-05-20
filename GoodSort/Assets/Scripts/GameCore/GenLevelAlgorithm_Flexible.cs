@@ -109,7 +109,15 @@ namespace DefaultNamespace
                         Debug.LogError($"GenLevelAlgorithm Error: Dispenser shelf at position {shelf.position} has invalid SlotData structure.");
                         hasInvalidDispenser = true; continue;
                     }
-                    foreach (int itemID in shelf.slotDatas[0].itemsLists) { if (itemID != -1) dispenserCounts[itemID] = dispenserCounts.GetValueOrDefault(itemID, 0) + 1; }
+                    foreach (int itemID in shelf.slotDatas[0].itemsLists)
+                    {
+                        if (itemID == -1) continue;
+                        if (!dispenserCounts.TryGetValue(itemID, out int count))
+                        {
+                            count = 0;
+                        }
+                        dispenserCounts[itemID] = count + 1;
+                    }
                 }
                 else if (shelf.shelfType == ShelfType.Normal) { normalShelfCount++; }
             }
@@ -122,7 +130,7 @@ namespace DefaultNamespace
                 int itemID = kvp.Key; int totalTriplesNeeded = kvp.Value;
                 if (totalTriplesNeeded < 0) { Debug.LogError($"ItemID {itemID} has negative triples."); calculationError = true; continue; }
                 int targetTotalItems = totalTriplesNeeded * 3;
-                int countInDispensers = dispenserCounts.GetValueOrDefault(itemID, 0);
+                dispenserCounts.TryGetValue(itemID, out int countInDispensers);
                 int neededForNormal = targetTotalItems - countInDispensers;
 
                 if (neededForNormal < 0)
@@ -163,7 +171,11 @@ namespace DefaultNamespace
             Dictionary<int, (int min, int max)> itemLayerBounds = new Dictionary<int, (int, int)>();
             foreach (int itemID in itemsToPlace)
             {
-                (int minLayerPlaced, int maxLayerPlaced) = itemLayerBounds.GetValueOrDefault(itemID, (-1, -1));
+                if (!itemLayerBounds.TryGetValue(itemID, out var bounds))
+                {
+                    bounds = (-1, -1);
+                }
+                (int minLayerPlaced, int maxLayerPlaced) = bounds;
                 bool placed = AttemptPlaceSingleItemStrictDepth(itemID, slotsPerLayer, ref currentNumberOfLayers, ref minLayerPlaced, ref maxLayerPlaced);
                 if (!placed) return false;
                 itemLayerBounds[itemID] = (minLayerPlaced, maxLayerPlaced);
@@ -310,7 +322,7 @@ namespace DefaultNamespace
         }
         private int CalculateInitialLayers(int slotsPerLayer, int totalItems, float coverPercent) {
              if (slotsPerLayer <= 0) return 1; int maxItemsPerLayer = slotsPerLayer;
-             float avgItemsPerLayer = maxItemsPerLayer * Math.Clamp(coverPercent, 0f, 1f);
+             float avgItemsPerLayer = maxItemsPerLayer * Mathf.Clamp(coverPercent, 0f, 1f);
              int layers = (avgItemsPerLayer > 0.01f) ? (int)Math.Ceiling((float)totalItems / avgItemsPerLayer) : totalItems;
              return Math.Max(1, layers);
         }
