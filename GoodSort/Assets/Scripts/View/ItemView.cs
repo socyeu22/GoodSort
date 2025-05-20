@@ -7,6 +7,7 @@ namespace GameCore
     public class ItemView : MonoBehaviour
     {
         private int m_id;
+        public int Id => m_id;
         private ItemData m_itemData;
         [SerializeField] private SpriteRenderer m_icon;
         [SerializeField] private Collider2D m_collider;
