@@ -16,49 +16,49 @@ MonoBehaviour:
   - shelfType: 1
     position: {x: 0, y: 0}
     slotDatas:
-    - rid: 4140705153917648918
+    - rid: 4140705153917648940
   - shelfType: 0
     position: {x: 0, y: 1}
     slotDatas:
-    - rid: 4140705153917648919
-    - rid: 4140705153917648920
-    - rid: 4140705153917648921
+    - rid: 4140705153917648941
+    - rid: 4140705153917648942
+    - rid: 4140705153917648943
   - shelfType: 0
     position: {x: 0, y: 2}
     slotDatas:
-    - rid: 4140705153917648922
-    - rid: 4140705153917648923
-    - rid: 4140705153917648924
+    - rid: 4140705153917648944
+    - rid: 4140705153917648945
+    - rid: 4140705153917648946
   - shelfType: 0
     position: {x: 1, y: 0}
     slotDatas:
-    - rid: 4140705153917648925
-    - rid: 4140705153917648926
-    - rid: 4140705153917648927
+    - rid: 4140705153917648947
+    - rid: 4140705153917648948
+    - rid: 4140705153917648949
   - shelfType: 0
     position: {x: 1, y: 1}
     slotDatas:
-    - rid: 4140705153917648928
-    - rid: 4140705153917648929
-    - rid: 4140705153917648930
+    - rid: 4140705153917648950
+    - rid: 4140705153917648951
+    - rid: 4140705153917648952
   - shelfType: 0
     position: {x: 1, y: 2}
     slotDatas:
-    - rid: 4140705153917648931
-    - rid: 4140705153917648932
-    - rid: 4140705153917648933
+    - rid: 4140705153917648953
+    - rid: 4140705153917648954
+    - rid: 4140705153917648955
   - shelfType: 0
     position: {x: 2, y: 0}
     slotDatas:
-    - rid: 4140705153917648934
-    - rid: 4140705153917648935
-    - rid: 4140705153917648936
+    - rid: 4140705153917648956
+    - rid: 4140705153917648957
+    - rid: 4140705153917648958
   - shelfType: 0
     position: {x: 2, y: 1}
     slotDatas:
-    - rid: 4140705153917648937
-    - rid: 4140705153917648938
-    - rid: 4140705153917648939
+    - rid: 4140705153917648959
+    - rid: 4140705153917648960
+    - rid: 4140705153917648961
   - shelfType: 2
     position: {x: 2, y: 2}
     slotDatas: []
@@ -67,91 +67,91 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4140705153917648918
+    - rid: 4140705153917648940
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
         itemsLists: 01000000010000000300000002000000
-    - rid: 4140705153917648919
+    - rid: 4140705153917648941
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0500000001000000040000000100000002000000
-    - rid: 4140705153917648920
+        itemsLists: ffffffff030000000600000002000000ffffffff06000000ffffffff
+    - rid: 4140705153917648942
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0500000003000000050000000500000005000000
-    - rid: 4140705153917648921
+        itemsLists: ffffffff0400000005000000020000000500000001000000ffffffff
+    - rid: 4140705153917648943
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0100000003000000020000000100000005000000
-    - rid: 4140705153917648922
+        itemsLists: 06000000060000000300000002000000060000000200000005000000
+    - rid: 4140705153917648944
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffff05000000010000000500000002000000
-    - rid: 4140705153917648923
+        itemsLists: 03000000060000000600000006000000040000000100000005000000
+    - rid: 4140705153917648945
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0500000005000000020000000100000005000000
-    - rid: 4140705153917648924
+        itemsLists: ffffffff050000000200000004000000ffffffffffffffffffffffff
+    - rid: 4140705153917648946
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 050000000100000002000000ffffffff04000000
-    - rid: 4140705153917648925
+        itemsLists: 03000000020000000600000004000000030000000600000004000000
+    - rid: 4140705153917648947
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0100000003000000050000000500000002000000
-    - rid: 4140705153917648926
+        itemsLists: 01000000ffffffff06000000030000000200000006000000ffffffff
+    - rid: 4140705153917648948
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 03000000040000000300000005000000ffffffff
-    - rid: 4140705153917648927
+        itemsLists: ffffffff020000000200000002000000010000000500000004000000
+    - rid: 4140705153917648949
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0500000001000000010000000400000003000000
-    - rid: 4140705153917648928
+        itemsLists: 06000000ffffffff0400000001000000050000000500000004000000
+    - rid: 4140705153917648950
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 01000000030000000400000005000000ffffffff
-    - rid: 4140705153917648929
+        itemsLists: 0300000003000000030000000300000006000000ffffffffffffffff
+    - rid: 4140705153917648951
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0200000003000000ffffffff0300000004000000
-    - rid: 4140705153917648930
+        itemsLists: ffffffff0300000006000000040000000400000002000000ffffffff
+    - rid: 4140705153917648952
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 01000000ffffffff040000000200000005000000
-    - rid: 4140705153917648931
+        itemsLists: 0600000005000000ffffffff03000000050000000400000005000000
+    - rid: 4140705153917648953
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 050000000300000004000000ffffffff01000000
-    - rid: 4140705153917648932
+        itemsLists: 03000000060000000100000004000000030000000400000005000000
+    - rid: 4140705153917648954
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0200000001000000010000000300000002000000
-    - rid: 4140705153917648933
+        itemsLists: 06000000ffffffff0300000006000000ffffffff0500000004000000
+    - rid: 4140705153917648955
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 03000000ffffffff040000000200000001000000
-    - rid: 4140705153917648934
+        itemsLists: 010000000300000006000000ffffffff020000000300000005000000
+    - rid: 4140705153917648956
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffff03000000ffffffff01000000ffffffff
-    - rid: 4140705153917648935
+        itemsLists: 06000000ffffffff0300000001000000020000000100000005000000
+    - rid: 4140705153917648957
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: ffffffff01000000ffffffff0400000005000000
-    - rid: 4140705153917648936
+        itemsLists: 0100000006000000060000000500000001000000ffffffffffffffff
+    - rid: 4140705153917648958
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0200000003000000050000000400000003000000
-    - rid: 4140705153917648937
+        itemsLists: ffffffffffffffff04000000050000000500000002000000ffffffff
+    - rid: 4140705153917648959
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0500000002000000ffffffff03000000ffffffff
-    - rid: 4140705153917648938
+        itemsLists: 0100000005000000ffffffff0300000006000000ffffffffffffffff
+    - rid: 4140705153917648960
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 0500000004000000030000000500000005000000
-    - rid: 4140705153917648939
+        itemsLists: ffffffff050000000100000001000000050000000500000005000000
+    - rid: 4140705153917648961
       type: {class: SlotData, ns: GameCore, asm: Assembly-CSharp}
       data:
-        itemsLists: 02000000ffffffff010000000500000005000000
+        itemsLists: 06000000030000000100000006000000010000000600000005000000

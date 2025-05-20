@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: ItemIconConfig
   m_EditorClassIdentifier: 
   itemIcons:
-  - id: 0
-    icon: {fileID: 21300000, guid: e02120f720ec742ed85a22b2e2ad2b15, type: 3}
   - id: 1
-    icon: {fileID: 21300000, guid: 3548223c26a4846a3909b46bc7092876, type: 3}
+    icon: {fileID: 21300000, guid: c5691de163b9a405b8958c3fc1283004, type: 3}
   - id: 2
-    icon: {fileID: 21300000, guid: 98ad814ca97d6426e92f29e87ff06015, type: 3}
+    icon: {fileID: 21300000, guid: 3548223c26a4846a3909b46bc7092876, type: 3}
   - id: 3
-    icon: {fileID: 21300000, guid: 8b7747f3c8ba94a30ad11e174278878c, type: 3}
+    icon: {fileID: 21300000, guid: 98ad814ca97d6426e92f29e87ff06015, type: 3}
   - id: 4
-    icon: {fileID: 21300000, guid: cf5ea526f3dbc4c0686d6ccb15d692ea, type: 3}
+    icon: {fileID: 21300000, guid: 8b7747f3c8ba94a30ad11e174278878c, type: 3}
   - id: 5
+    icon: {fileID: 21300000, guid: cf5ea526f3dbc4c0686d6ccb15d692ea, type: 3}
+  - id: 6
     icon: {fileID: 21300000, guid: 05e7b08c8bca34be49454354f9798c22, type: 3}
