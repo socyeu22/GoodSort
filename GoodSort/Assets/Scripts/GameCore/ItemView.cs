@@ -12,14 +12,17 @@ namespace GameCore
         [SerializeField] private Collider2D m_collider;
         [SerializeField] private float m_heightOffset;
         private ShelfView m_curShelfCollider;
-        private CircleCollider2D m_curSlotCollider;
+        private SlotView m_curSlotCollider;
         private ShelfView m_curShelf;
+        private SlotView m_curSlot;
         private Vector3 m_dragOffset;
         private Action<int, Vector2Int, Vector2Int> m_updateBoardChange;
 
         [SerializeField] private int m_layerIndex;
         private Vector3 m_oldPosition;
         private bool m_isDragging;
+        public SlotView CurrentSlot => m_curSlot;
+        public ShelfView CurrentShelf => m_curShelf;
         public int LayerIndex
         {
             get => m_layerIndex;
@@ -38,12 +41,14 @@ namespace GameCore
             }
         }
     
-        public void InitItem(ItemData data, int layerIndex, ShelfView shelfView, Action<int, Vector2Int, Vector2Int> updateBoardChange)
+        public void InitItem(ItemData data, int layerIndex, ShelfView shelfView, SlotView slotView,
+            Action<int, Vector2Int, Vector2Int> updateBoardChange)
         {
             m_updateBoardChange = updateBoardChange;
             m_itemData = data;
             m_id = data.id;
             m_curShelf = shelfView;
+            m_curSlot = slotView;
             LayerIndex = layerIndex;
 
             m_icon.sprite = GameConfig.Instance.itemIconConfig.GetItemIconByID(m_id);
@@ -83,12 +88,11 @@ namespace GameCore
             ShelfView shelf = other.GetComponentInParent<ShelfView>();
             if (shelf != null)
             {
-                var circle = other as CircleCollider2D;
-                if (circle != null &&
-                    (circle == shelf.leftSlot || circle == shelf.midSlot || circle == shelf.rightSlot))
+                SlotView slot = other.GetComponent<SlotView>();
+                if (slot != null)
                 {
                     m_curShelfCollider = shelf;
-                    m_curSlotCollider = circle;
+                    m_curSlotCollider = slot;
                 }
                 else
                 {
@@ -102,10 +106,10 @@ namespace GameCore
             ShelfView shelf = other.GetComponentInParent<ShelfView>();
             if (shelf != null)
             {
-                var circle = other as CircleCollider2D;
-                if (circle != null && (circle == shelf.leftSlot || circle == shelf.midSlot || circle == shelf.rightSlot))
+                SlotView slot = other.GetComponent<SlotView>();
+                if (slot != null)
                 {
-                    if (circle == m_curSlotCollider)
+                    if (slot == m_curSlotCollider)
                     {
                         m_curSlotCollider = null;
                     }
@@ -128,7 +132,20 @@ namespace GameCore
             // Reset order after dragging
             m_icon.sortingOrder = 10 - m_layerIndex;
 
-            if (m_curShelfCollider != null && m_curShelfCollider.TryAddToShelf(this))
+            bool added = false;
+            if (m_curShelfCollider != null)
+            {
+                if (m_curSlotCollider != null)
+                {
+                    added = m_curShelfCollider.TryAddToShelf(this, m_curSlotCollider);
+                }
+                else
+                {
+                    added = m_curShelfCollider.TryAddToShelf(this);
+                }
+            }
+
+            if (added)
             {
                 Vector2Int startPos = m_curShelf.Position;
                 m_curShelf.RemoveFromShelf(this);
@@ -144,6 +161,12 @@ namespace GameCore
         private void SetActiveItem(bool isActive)
         {
             m_collider.enabled = isActive;
+        }
+
+        public void SetShelfAndSlot(ShelfView shelf, SlotView slot)
+        {
+            m_curShelf = shelf;
+            m_curSlot = slot;
         }
 
     }
