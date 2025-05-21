@@ -16,8 +16,11 @@ namespace GameCore
 
         private Vector2Int m_position;
         [SerializeField] private float m_offsetDistance;
+        private ShelfType m_shelfType;
 
         public Vector2Int Position => m_position;
+        public ShelfType ShelfType => m_shelfType;
+        public float OffsetDistance => m_offsetDistance;
 
         [SerializeField] private MidSlotView m_midSlot;
         [SerializeField] private MidSlotView m_rightSlot;
@@ -51,6 +54,7 @@ namespace GameCore
             m_slots.Clear();
             m_availableSlots.Clear();
             m_position = shelfData.position;
+            m_shelfType = shelfData.shelfType;
 
             AddSlot(m_leftSlot);
             AddSlot(m_midSlot);
@@ -194,6 +198,38 @@ namespace GameCore
                     item.LayerIndex = itemLayer.Key + 1;
                 }
             }
+        }
+
+        public SlotView GetNearestAvailableSlot(Vector3 worldPos)
+        {
+            if (m_shelfType != ShelfType.Normal)
+            {
+                return null;
+            }
+
+            SlotView nearest = null;
+            float minDist = m_offsetDistance;
+            foreach (var slot in m_availableSlots)
+            {
+                float dist = Vector3.Distance(slot.transform.position, worldPos);
+                if (dist <= minDist)
+                {
+                    minDist = dist;
+                    nearest = slot;
+                }
+            }
+
+            return nearest;
+        }
+
+        public bool TrySnapItem(ItemController item)
+        {
+            var slot = GetNearestAvailableSlot(item.transform.position);
+            if (slot == null)
+            {
+                return false;
+            }
+            return TryAddToShelf(item, slot);
         }
         
     }
