@@ -59,24 +59,52 @@ namespace GameCore
             m_view.OnDragEnd(m_layerIndex);
 
             bool added = false;
+            ShelfView targetShelf = null;
+            SlotView targetSlot = null;
+            ShelfView startShelf = m_curShelf;
+            SlotView startSlot = m_curSlot;
+            Vector2Int startPos = startShelf.Position;
+
             if (m_curShelfCollider != null)
             {
                 if (m_curSlotCollider != null)
                 {
-                    added = m_curShelfCollider.TryAddToShelf(this, m_curSlotCollider);
+                    if (m_curShelfCollider.TryGetSnapSlot(this, out var slot) && slot == m_curSlotCollider)
+                    {
+                        targetShelf = m_curShelfCollider;
+                        targetSlot = m_curSlotCollider;
+                        added = true;
+                    }
                 }
-                else
+                else if (m_curShelfCollider.TryGetSnapSlot(this, out var slot))
                 {
-                    added = m_curShelfCollider.TryAddToShelf(this);
+                    targetShelf = m_curShelfCollider;
+                    targetSlot = slot;
+                    added = true;
                 }
             }
 
-            if (added)
+            if (!added)
             {
-                Vector2Int startPos = m_curShelf.Position;
-                m_curShelf.RemoveFromShelf(this);
-                m_curShelf = m_curShelfCollider;
-                m_updateBoardChange?.Invoke(Id, startPos, m_curShelfCollider.Position);
+                foreach (var shelf in FindObjectsOfType<ShelfView>())
+                {
+                    if (shelf.TryGetSnapSlot(this, out var slot))
+                    {
+                        targetShelf = shelf;
+                        targetSlot = slot;
+                        added = true;
+                        break;
+                    }
+                }
+            }
+
+            if (added && targetShelf != null && targetSlot != null)
+            {
+                startShelf.RemoveFromShelf(this, startSlot);
+                targetShelf.TryAddToShelf(this, targetSlot);
+                m_curShelf = targetShelf;
+                m_curShelfCollider = targetShelf;
+                m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
             }
             else
             {
