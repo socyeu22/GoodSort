@@ -191,7 +191,7 @@ namespace GameCore
             {
                 foreach (var item in itemLayer.Value)
                 {
-                    item.LayerIndex = itemLayer.Key;
+                    item.LayerIndex = itemLayer.Key + 1;
                 }
             }
         }
