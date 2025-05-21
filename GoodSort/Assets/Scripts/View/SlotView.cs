@@ -14,6 +14,8 @@ namespace GameCore
         public virtual void AddItem(ItemController item)
         {
             item.transform.SetParent(transform);
+            // Reset local position so the item snaps exactly to the slot
+            item.transform.localPosition = Vector3.zero;
             item.LayerIndex = transform.childCount;
 
             if (m_slotData.itemsLists.Count == 0)
