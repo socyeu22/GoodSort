@@ -146,15 +146,20 @@ namespace GameCore
 
         public void RemoveFromShelf(ItemController item)
         {
+            RemoveFromShelf(item, item.CurrentSlot);
+        }
+
+        public void RemoveFromShelf(ItemController item, SlotView slot)
+        {
             if (TopLayer.Contains(item))
             {
                 TopLayer.Remove(item);
-                if (item.CurrentSlot != null)
+                if (slot != null)
                 {
-                    item.CurrentSlot.RemoveItem(item);
-                    if (!m_availableSlots.Contains(item.CurrentSlot))
+                    slot.RemoveItem(item);
+                    if (!m_availableSlots.Contains(slot))
                     {
-                        m_availableSlots.Add(item.CurrentSlot);
+                        m_availableSlots.Add(slot);
                     }
                 }
                 if (TopLayer.Count == 0)
@@ -220,6 +225,12 @@ namespace GameCore
             }
 
             return nearest;
+        }
+
+        public bool TryGetSnapSlot(Vector3 worldPos, out SlotView slot)
+        {
+            slot = GetNearestAvailableSlot(worldPos);
+            return slot != null;
         }
 
         public bool TrySnapItem(ItemController item)
