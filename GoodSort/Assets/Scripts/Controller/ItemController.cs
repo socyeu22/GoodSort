@@ -22,6 +22,68 @@ namespace GameCore
         private Vector3 m_oldPosition;
         private bool m_isDragging;
 
+        private void BeginDrag(Vector3 pointerWorldPosition)
+        {
+            if (LayerIndex != 1)
+            {
+                return;
+            }
+
+            Vector3 pos = pointerWorldPosition;
+            pos.z = 0f;
+            m_dragOffset = transform.position - pos;
+            m_oldPosition = transform.localPosition;
+            m_view.OnDragStart();
+            m_isDragging = true;
+        }
+
+        private void UpdateDragPosition(Vector3 pointerWorldPosition)
+        {
+            if (!m_isDragging)
+            {
+                return;
+            }
+            Vector3 pos = pointerWorldPosition;
+            pos.z = 0f;
+            Vector3 newPos = pos + m_dragOffset;
+            transform.position = newPos;
+        }
+
+        private void EndDragInternal()
+        {
+            if (!m_isDragging)
+            {
+                return;
+            }
+            m_isDragging = false;
+            m_view.OnDragEnd(m_layerIndex);
+
+            bool added = false;
+            if (m_curShelfCollider != null)
+            {
+                if (m_curSlotCollider != null)
+                {
+                    added = m_curShelfCollider.TryAddToShelf(this, m_curSlotCollider);
+                }
+                else
+                {
+                    added = m_curShelfCollider.TryAddToShelf(this);
+                }
+            }
+
+            if (added)
+            {
+                Vector2Int startPos = m_curShelf.Position;
+                m_curShelf.RemoveFromShelf(this);
+                m_curShelf = m_curShelfCollider;
+                m_updateBoardChange?.Invoke(Id, startPos, m_curShelfCollider.Position);
+            }
+            else
+            {
+                transform.localPosition = m_oldPosition;
+            }
+        }
+
         public int Id => m_itemData.id;
         public SlotView CurrentSlot => m_curSlot;
         public ShelfView CurrentShelf => m_curShelf;
@@ -55,29 +117,12 @@ namespace GameCore
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (LayerIndex != 1)
-            {
-                return;
-            }
-
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(eventData.position);
-            mouseWorld.z = 0f;
-            m_dragOffset = transform.position - mouseWorld;
-            m_oldPosition = transform.localPosition;
-            m_view.OnDragStart();
-            m_isDragging = true;
+            BeginDrag(Camera.main.ScreenToWorldPoint(eventData.position));
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!m_isDragging)
-            {
-                return;
-            }
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(eventData.position);
-            mouseWorld.z = 0f;
-            Vector3 newPos = mouseWorld + m_dragOffset;
-            transform.position = newPos;
+            UpdateDragPosition(Camera.main.ScreenToWorldPoint(eventData.position));
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -121,37 +166,22 @@ namespace GameCore
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (!m_isDragging)
-            {
-                return;
-            }
-            m_isDragging = false;
-            m_view.OnDragEnd(m_layerIndex);
+            EndDragInternal();
+        }
 
-            bool added = false;
-            if (m_curShelfCollider != null)
-            {
-                if (m_curSlotCollider != null)
-                {
-                    added = m_curShelfCollider.TryAddToShelf(this, m_curSlotCollider);
-                }
-                else
-                {
-                    added = m_curShelfCollider.TryAddToShelf(this);
-                }
-            }
+        private void OnMouseDown()
+        {
+            BeginDrag(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
 
-            if (added)
-            {
-                Vector2Int startPos = m_curShelf.Position;
-                m_curShelf.RemoveFromShelf(this);
-                m_curShelf = m_curShelfCollider;
-                m_updateBoardChange?.Invoke(Id, startPos, m_curShelfCollider.Position);
-            }
-            else
-            {
-                transform.localPosition = m_oldPosition;
-            }
+        private void OnMouseDrag()
+        {
+            UpdateDragPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+
+        private void OnMouseUp()
+        {
+            EndDragInternal();
         }
 
         public void SetShelfAndSlot(ShelfView shelf, SlotView slot)
