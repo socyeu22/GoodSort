@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7884733906573572587}
   - component: {fileID: 5193704451915083927}
-  - component: {fileID: 6013699259052556829}
   - component: {fileID: 5810384625692680624}
   m_Layer: 0
   m_Name: Mid_Slot
@@ -41,7 +40,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258990504343823394}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -69,33 +68,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5124522}
   serializedVersion: 2
   m_Radius: 0.51516134
---- !u!50 &6013699259052556829
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258990504343823394}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &5810384625692680624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6358837275295302578}
   - component: {fileID: 4858460501863003066}
-  - component: {fileID: 8167005469386192255}
   - component: {fileID: 4338214541874661683}
   m_Layer: 0
   m_Name: Left_Slot
@@ -151,7 +122,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3191826616161233825}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -179,33 +150,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5124522}
   serializedVersion: 2
   m_Radius: 0.51516134
---- !u!50 &8167005469386192255
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3191826616161233825}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &4338214541874661683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,9 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_offsetDistance: 0.8
-  midSlot: {fileID: 5810384625692680624}
-  rightSlot: {fileID: 7505363327833551094}
-  leftSlot: {fileID: 4338214541874661683}
+  m_midSlot: {fileID: 5810384625692680624}
+  m_rightSlot: {fileID: 7505363327833551094}
+  m_leftSlot: {fileID: 4338214541874661683}
 --- !u!1 &6522151115415356153
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +226,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6876820329283207846}
   - component: {fileID: 5760168667791896111}
-  - component: {fileID: 6892148645106394253}
   - component: {fileID: 7505363327833551094}
   m_Layer: 0
   m_Name: Right_Slot
@@ -313,7 +256,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6522151115415356153}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -341,33 +284,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5124522}
   serializedVersion: 2
   m_Radius: 0.51516134
---- !u!50 &6892148645106394253
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6522151115415356153}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &7505363327833551094
 MonoBehaviour:
   m_ObjectHideFlags: 0
