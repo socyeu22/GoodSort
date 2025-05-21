@@ -59,6 +59,9 @@ namespace GameCore
             m_view.OnDragEnd(m_layerIndex);
 
             bool added = false;
+            ShelfView targetShelf = null;
+            Vector2Int startPos = m_curShelf.Position;
+
             if (m_curShelfCollider != null)
             {
                 if (m_curSlotCollider != null)
@@ -69,14 +72,32 @@ namespace GameCore
                 {
                     added = m_curShelfCollider.TryAddToShelf(this);
                 }
+
+                if (added)
+                {
+                    targetShelf = m_curShelfCollider;
+                }
             }
 
-            if (added)
+            if (!added)
             {
-                Vector2Int startPos = m_curShelf.Position;
+                foreach (var shelf in FindObjectsOfType<ShelfView>())
+                {
+                    if (shelf.TrySnapItem(this))
+                    {
+                        added = true;
+                        targetShelf = shelf;
+                        break;
+                    }
+                }
+            }
+
+            if (added && targetShelf != null)
+            {
                 m_curShelf.RemoveFromShelf(this);
-                m_curShelf = m_curShelfCollider;
-                m_updateBoardChange?.Invoke(Id, startPos, m_curShelfCollider.Position);
+                m_curShelf = targetShelf;
+                m_curShelfCollider = targetShelf;
+                m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
             }
             else
             {
