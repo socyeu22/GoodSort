@@ -19,6 +19,7 @@ namespace GameCore
         private Action<int, Vector2Int, Vector2Int> m_updateBoardChange;
 
         [SerializeField] private int m_layerIndex;
+        [SerializeField] private float m_snapDistance = 1f;
         private Vector3 m_oldPosition;
         private bool m_isDragging;
 
@@ -58,49 +59,51 @@ namespace GameCore
             m_isDragging = false;
             m_view.OnDragEnd(m_layerIndex);
 
-            ShelfView targetShelf = null;
-            SlotView targetSlot = null;
             Vector2Int startPos = m_curShelf.Position;
 
-            if (m_curShelfCollider != null && m_curShelfCollider.TryGetSnapSlot(transform.position, out targetSlot))
+            // Find nearest slot that has MidSlotView
+            MidSlotView nearestSlot = null;
+            float minDist = m_snapDistance;
+            foreach (var slot in FindObjectsOfType<MidSlotView>())
             {
-                targetShelf = m_curShelfCollider;
-            }
-            else
-            {
-                foreach (var shelf in FindObjectsOfType<ShelfView>())
+                float dist = Vector3.Distance(transform.position, slot.transform.position);
+                if (dist <= minDist)
                 {
-                    if (shelf.TryGetSnapSlot(transform.position, out targetSlot))
+                    if (slot.CanSnap(Id))
                     {
-                        targetShelf = shelf;
-                        break;
+                        minDist = dist;
+                        nearestSlot = slot;
                     }
                 }
             }
 
-            if (targetShelf != null && targetSlot != null)
+            if (nearestSlot != null)
             {
-                var oldShelf = m_curShelf;
-                var oldSlot = m_curSlot;
-                oldShelf.RemoveFromShelf(this, oldSlot);
+                ShelfView targetShelf = nearestSlot.GetComponentInParent<ShelfView>();
+                if (targetShelf != null)
+                {
+                    var oldShelf = m_curShelf;
+                    var oldSlot = m_curSlot;
+                    oldShelf.RemoveFromShelf(this, oldSlot);
 
-                if (targetShelf.TryAddToShelf(this, targetSlot))
-                {
-                    m_curShelf = targetShelf;
-                    m_curShelfCollider = targetShelf;
-                    m_curSlotCollider = targetSlot;
-                    m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
-                }
-                else
-                {
-                    oldShelf.TryAddToShelf(this, oldSlot);
-                    transform.localPosition = m_oldPosition;
+                    if (targetShelf.TryAddToShelf(this, nearestSlot))
+                    {
+                        m_curShelf = targetShelf;
+                        m_curShelfCollider = targetShelf;
+                        m_curSlotCollider = nearestSlot;
+                        m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
+                    }
+                    else
+                    {
+                        oldShelf.TryAddToShelf(this, oldSlot);
+                        transform.localPosition = m_oldPosition;
+                    }
+                    return;
                 }
             }
-            else
-            {
-                transform.localPosition = m_oldPosition;
-            }
+
+            // if no valid slot found just reset position
+            transform.localPosition = m_oldPosition;
         }
 
         public int Id => m_itemData.id;
