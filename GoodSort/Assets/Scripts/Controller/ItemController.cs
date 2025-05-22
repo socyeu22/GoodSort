@@ -33,6 +33,7 @@ namespace GameCore
                 if (slot.IsTopSlotAvailable)
                 {
                     m_snapSlots.Add(slot);
+                    Debug.Log($"Valid snap object: {slot.TopItemSlot.name}");
                 }
             }
         }
