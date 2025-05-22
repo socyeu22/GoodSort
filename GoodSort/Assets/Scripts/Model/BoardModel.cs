@@ -27,7 +27,15 @@ namespace GameCore
             {
                 if (slotData.itemsLists[0] == itemId)
                 {
-                    slotData.itemsLists[0] = -1;
+                    if (slotData.itemsLists.Count == 1)
+                    {
+                        slotData.itemsLists[0] = -1;
+                    }
+                    else
+                    {
+                        slotData.itemsLists[0] = slotData.itemsLists[1];
+                        slotData.itemsLists.RemoveAt(1);
+                    }
                     break;
                 }
             }
