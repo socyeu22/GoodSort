@@ -1,4 +1,5 @@
 using UnityEngine;
+using DefaultNamespace;
 
 namespace GameCore
 {
@@ -74,9 +75,41 @@ namespace GameCore
             }
         }
 
+        private void Awake()
+        {
+            CreateDefaultTopItemSlot();
+        }
+
         private void Start()
         {
             UpdateTopItemSlotVisibility();
+        }
+
+        private void CreateDefaultTopItemSlot()
+        {
+            if (m_topItemSlot != null)
+            {
+                return;
+            }
+
+            var prefab = GameConfig.Instance.prefabConfig.itemPrefab;
+            if (prefab == null)
+            {
+                return;
+            }
+
+            var item = Instantiate(prefab, transform);
+            item.transform.localPosition = Vector3.zero;
+            item.gameObject.name = "TopItemSlot";
+
+            var controller = item.GetComponent<ItemController>();
+            if (controller != null)
+            {
+                var dummy = new ItemData { id = -1, visualType = ItemVisualType.FullDisplay };
+                controller.InitItem(dummy, 1, null, this, null);
+            }
+
+            m_topItemSlot = item.gameObject;
         }
 
         private void UpdateTopItemSlotVisibility()
