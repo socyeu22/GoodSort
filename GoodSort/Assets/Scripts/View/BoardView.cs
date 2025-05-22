@@ -22,6 +22,12 @@ namespace GameCore
                 var shelfView = Instantiate(shelfPrefab, m_boardTransform);
                 shelfView.InitShelf(shelfData, OnStateBoardChange);
                 shelfView.transform.localPosition = new Vector3(m_offset.x * shelfData.position.x, m_offset.y * shelfData.position.y, 0);
+
+                // Rename the spawned shelf so it is easier to track in the hierarchy.
+                // The name contains shelf type and its position on the board.
+                string shelfTypeName = shelfData.shelfType.ToString();
+                shelfView.name = $"{shelfTypeName}_Shelf_{shelfData.position.x}_{shelfData.position.y}";
+
                 m_shelfViews.Add(shelfView);
             }
         }
