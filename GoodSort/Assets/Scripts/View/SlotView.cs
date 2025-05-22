@@ -14,6 +14,7 @@ namespace GameCore
         ///     Item id currently shown by the TopItemSlot. -1 if empty.
         /// </summary>
         public int TopItemSlotId => m_topItemSlotId;
+        public GameObject TopItemSlot => m_topItemSlot;
         public SlotData SlotData
         {
             get => m_slotData;
