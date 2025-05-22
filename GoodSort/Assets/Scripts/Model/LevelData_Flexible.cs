@@ -155,16 +155,17 @@ public class LevelData_Flexible : ScriptableObject
     /// <summary>
     /// Sau khi dữ liệu level được tạo, loại bỏ các giá trị -1 ở các layer từ index 1 trở đi của mọi SlotData.
     /// </summary>
-    private void CleanupSlotData()
-    {
-        if (shelfList == null) return;
-        foreach (var shelf in shelfList)
+        private void CleanupSlotData()
         {
-            if (shelf.slotDatas == null) continue;
-            foreach (var slot in shelf.slotDatas)
+            if (shelfList == null) return;
+            foreach (var shelf in shelfList)
             {
-                slot?.RemoveNegativeFromIndexOne();
+                if (shelf.slotDatas == null) continue;
+                foreach (var slot in shelf.slotDatas)
+                {
+                    slot?.RemoveNegativeFromIndexOne();
+                }
+                shelf.UpdateTopItemIds();
             }
         }
-    }
 }

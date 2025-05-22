@@ -41,21 +41,62 @@ namespace GameCore
         [InfoBox("Định nghĩa itemsLists cho Dispenser tại SlotData đầu tiên.", InfoMessageType.None, VisibleIf = "@this.shelfType == ShelfType.Dispenser && this.slotDatas != null && this.slotDatas.Count > 0")]
         public List<SlotData> slotDatas;
 
+        [Tooltip("ItemId trên cùng của mỗi SlotData. Index tương ứng với slotDatas.")]
+        [ListDrawerSettings(IsReadOnly = true)]
+        public List<int> topItemIds;
+
         // Constructor tiện lợi (tùy chọn)
         public ShelfData(ShelfType type, Vector2Int pos)
         {
             shelfType = type;
             position = pos;
             slotDatas = new List<SlotData>();
+            topItemIds = new List<int>();
+        }
+
+        public void UpdateTopItemIds()
+        {
+            if (topItemIds == null)
+            {
+                topItemIds = new List<int>();
+            }
+            topItemIds.Clear();
+            if (slotDatas == null)
+            {
+                return;
+            }
+
+            foreach (var slot in slotDatas)
+            {
+                int id = -1;
+                if (slot?.itemsLists != null && slot.itemsLists.Count > 0)
+                {
+                    id = slot.itemsLists[0];
+                }
+                topItemIds.Add(id);
+            }
         }
 
         public bool IsFirstLayerEmpty
         {
             get
             {
-                foreach (var slotData in slotDatas)
+                if (topItemIds == null || topItemIds.Count == 0)
                 {
-                    if (slotData.itemsLists[0] != -1)
+                    if (slotDatas == null) return true;
+                    foreach (var slotData in slotDatas)
+                    {
+                        if (slotData.itemsLists[0] != -1)
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+
+                foreach (var id in topItemIds)
+                {
+                    if (id != -1)
                     {
                         return false;
                     }

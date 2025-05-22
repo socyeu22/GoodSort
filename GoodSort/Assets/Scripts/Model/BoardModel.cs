@@ -10,6 +10,10 @@ namespace GameCore
         public BoardModel(LevelData_Flexible levelData)
         {
             shelfData = levelData.shelfList;
+            foreach (var shelf in shelfData)
+            {
+                shelf.UpdateTopItemIds();
+            }
         }
         
         private ShelfData GetShelfData(Vector2Int position) => shelfData.Find(x => x.position == position);
@@ -18,7 +22,7 @@ namespace GameCore
         {
             var shelfStartData = GetShelfData(shelfStart);
             var shelfEndData = GetShelfData(shelfEnd);
-            
+
             foreach (var slotData in shelfStartData.slotDatas)
             {
                 if (slotData.itemsLists[0] == itemId)
@@ -27,6 +31,7 @@ namespace GameCore
                     break;
                 }
             }
+            shelfStartData.UpdateTopItemIds();
 
             if (shelfStartData.IsFirstLayerEmpty)
             {
@@ -38,6 +43,7 @@ namespace GameCore
                     }
                     slotData.itemsLists.RemoveAt(0);
                 }
+                shelfStartData.UpdateTopItemIds();
             }
 
             bool added = false;
@@ -50,6 +56,7 @@ namespace GameCore
                     break;
                 }
             }
+            shelfEndData.UpdateTopItemIds();
 
             if (!added) return false;
 
@@ -69,6 +76,7 @@ namespace GameCore
                 {
                     slot.itemsLists[0] = -1;
                 }
+                shelfEndData.UpdateTopItemIds();
 
                 if (shelfEndData.IsFirstLayerEmpty)
                 {
@@ -79,6 +87,7 @@ namespace GameCore
                             slot.itemsLists.RemoveAt(0);
                         }
                     }
+                    shelfEndData.UpdateTopItemIds();
                 }
             }
 
