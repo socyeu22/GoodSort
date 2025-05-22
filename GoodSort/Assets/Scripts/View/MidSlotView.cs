@@ -23,14 +23,20 @@ namespace GameCore
         /// <summary>
         ///     Returns true if the slot does not contain any item at layer 1.
         /// </summary>
-        public bool IsEmpty => SlotData.itemsLists.Count == 0 || SlotData.itemsLists[0] == -1;
+        public bool IsEmpty => TopItemId == -1;
 
         /// <summary>
         ///     Check if the slot can snap the given item id.
         /// </summary>
         public bool CanSnap(int itemId)
         {
-            if (!IsEmpty)
+            var shelf = GetComponentInParent<ShelfView>();
+            if (shelf == null || shelf.ShelfType != ShelfType.Normal)
+            {
+                return false;
+            }
+
+            if (TopItemId != -1)
             {
                 return false;
             }

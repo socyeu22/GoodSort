@@ -11,6 +11,21 @@ namespace GameCore
             set => m_slotData = value;
         }
 
+        /// <summary>
+        ///     Id of the item currently on top of this slot. -1 if empty.
+        /// </summary>
+        public int TopItemId
+        {
+            get
+            {
+                if (m_slotData.itemsLists == null || m_slotData.itemsLists.Count == 0)
+                {
+                    return -1;
+                }
+                return m_slotData.itemsLists[0];
+            }
+        }
+
         public virtual void AddItem(ItemController item)
         {
             item.transform.SetParent(transform);
