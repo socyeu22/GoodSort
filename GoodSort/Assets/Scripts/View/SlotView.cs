@@ -35,6 +35,11 @@ namespace GameCore
             }
         }
 
+        /// <summary>
+        ///     Returns true if this slot can accept a new top item.
+        /// </summary>
+        public bool IsTopSlotAvailable => TopItemId == -1;
+
         public virtual void AddItem(ItemController item)
         {
             item.transform.SetParent(transform);
