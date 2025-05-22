@@ -62,15 +62,13 @@ namespace GameCore
             Vector2Int startPos = m_curShelf.Position;
 
             // Find nearest available slot based on top item id and shelf type
-            MidSlotView nearestSlot = null;
+            SlotView nearestSlot = null;
             float minDist = m_snapDistance;
-            foreach (var slot in FindObjectsOfType<MidSlotView>())
+            foreach (var slot in FindObjectsOfType<SlotView>())
             {
-                if (!slot.CanSnap(Id))
-                {
-                    continue;
-                }
-
+                if (slot == m_curSlot) continue;
+                ShelfView shelf = slot.GetComponentInParent<ShelfView>();
+                if (shelf == null || shelf.ShelfType != ShelfType.Normal) continue;
                 float dist = Vector3.Distance(transform.position, slot.transform.position);
                 if (dist <= minDist)
                 {
@@ -84,17 +82,15 @@ namespace GameCore
                 ShelfView targetShelf = nearestSlot.GetComponentInParent<ShelfView>();
                 if (targetShelf != null && m_curSlot != null)
                 {
-                    if (nearestSlot.TopItemSlotId == -1)
-                    {
-                        int movedId = m_curSlot.TopItemSlotId;
-                        m_curSlot.SetTopItemSlotId(-1);
-                        nearestSlot.SetTopItemSlotId(movedId);
-                        m_curShelf = targetShelf;
-                        m_curSlot = nearestSlot;
-                        m_updateBoardChange?.Invoke(movedId, startPos, targetShelf.Position);
-                        Destroy(gameObject);
-                        return;
-                    }
+                    int movedId = m_curSlot.TopItemSlotId;
+                    int targetId = nearestSlot.TopItemSlotId;
+                    m_curSlot.SetTopItemSlotId(targetId);
+                    nearestSlot.SetTopItemSlotId(movedId);
+                    m_curShelf = targetShelf;
+                    m_curSlot = nearestSlot;
+                    m_updateBoardChange?.Invoke(movedId, startPos, targetShelf.Position);
+                    Destroy(gameObject);
+                    return;
                 }
             }
 
