@@ -9,7 +9,11 @@ namespace DefaultNamespace
     {
         public List<ItemIcon> itemIcons;
         
-        public Sprite GetItemIconByID(int id) => itemIcons.Find(x => x.id == id).icon;
+        public Sprite GetItemIconByID(int id)
+        {
+            var entry = itemIcons.Find(x => x.id == id);
+            return entry != null ? entry.icon : null;
+        }
     }
 
     [Serializable]
