@@ -38,6 +38,29 @@ namespace GameCore
             m_availableSlots.Add(slot);
         }
 
+        public void MarkSlotAvailable(SlotView slot)
+        {
+            if (slot == null)
+            {
+                return;
+            }
+
+            if (!m_availableSlots.Contains(slot))
+            {
+                m_availableSlots.Add(slot);
+            }
+        }
+
+        public void MarkSlotUnavailable(SlotView slot)
+        {
+            if (slot == null)
+            {
+                return;
+            }
+
+            m_availableSlots.Remove(slot);
+        }
+
         private SlotView GetNextAvailableSlot()
         {
             if (m_availableSlots.Count == 0)
@@ -124,7 +147,7 @@ namespace GameCore
             slot.AddItem(item);
             item.SetShelfAndSlot(this, slot);
             TopLayer.Add(item);
-            m_availableSlots.Remove(slot);
+            MarkSlotUnavailable(slot);
 
             return true;
         }
@@ -161,10 +184,7 @@ namespace GameCore
                 if (slot != null)
                 {
                     slot.RemoveItem(item);
-                    if (!m_availableSlots.Contains(slot))
-                    {
-                        m_availableSlots.Add(slot);
-                    }
+                    MarkSlotAvailable(slot);
                 }
                 if (TopLayer.Count == 0)
                 {
@@ -182,10 +202,7 @@ namespace GameCore
                 if (itemView.CurrentSlot != null)
                 {
                     itemView.CurrentSlot.RemoveItem(itemView);
-                    if (!m_availableSlots.Contains(itemView.CurrentSlot))
-                    {
-                        m_availableSlots.Add(itemView.CurrentSlot);
-                    }
+                    MarkSlotAvailable(itemView.CurrentSlot);
                 }
                 itemView.gameObject.SetActive(false);
             }

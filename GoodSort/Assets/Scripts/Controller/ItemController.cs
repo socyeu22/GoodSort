@@ -90,6 +90,8 @@ namespace GameCore
                 {
                     int movedId = m_curSlot.TopItemSlotId;
                     int targetId = nearestSlot.TopItemSlotId;
+                    m_curShelf.MarkSlotAvailable(m_curSlot);
+                    targetShelf.MarkSlotUnavailable(nearestSlot);
                     m_curSlot.SetTopItemSlotId(targetId);
                     nearestSlot.SetTopItemSlotId(movedId);
                     m_curShelf = targetShelf;
