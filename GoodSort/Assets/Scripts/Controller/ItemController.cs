@@ -66,44 +66,24 @@ namespace GameCore
             }
 
             Vector2Int startPos = m_curShelf.Position;
+            SlotView startSlot = m_curSlot;
 
-            // Find nearest available slot based on top item id and shelf type
-            SlotView nearestSlot = null;
-            float minDist = m_snapDistance;
-            foreach (var slot in FindObjectsOfType<SlotView>())
+            // Temporarily remove from current shelf so the slot becomes available
+            m_curShelf.RemoveFromShelf(this);
+
+            // Try snap to shelf we are currently colliding with first
+            ShelfView targetShelf = m_curShelfCollider;
+            if (targetShelf != null && targetShelf.TrySnapItem(this))
             {
-                if (slot == m_curSlot) continue;
-                ShelfView shelf = slot.GetComponentInParent<ShelfView>();
-                if (shelf == null || shelf.ShelfType != ShelfType.Normal) continue;
-                float dist = Vector3.Distance(transform.position, slot.transform.position);
-                if (dist <= minDist)
-                {
-                    minDist = dist;
-                    nearestSlot = slot;
-                }
+                m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
+                return;
             }
 
-            if (nearestSlot != null)
+            // Fallback: snap back to original shelf
+            if (m_curShelf.TryAddToShelf(this, startSlot))
             {
-                ShelfView targetShelf = nearestSlot.GetComponentInParent<ShelfView>();
-                if (targetShelf != null && m_curSlot != null)
-                {
-                    int movedId = m_curSlot.TopItemSlotId;
-                    int targetId = nearestSlot.TopItemSlotId;
-                    m_curShelf.MarkSlotAvailable(m_curSlot);
-                    targetShelf.MarkSlotUnavailable(nearestSlot);
-                    m_curSlot.SetTopItemSlotId(targetId);
-                    nearestSlot.SetTopItemSlotId(movedId);
-                    m_curShelf = targetShelf;
-                    m_curSlot = nearestSlot;
-                    m_updateBoardChange?.Invoke(movedId, startPos, targetShelf.Position);
-                    Destroy(gameObject);
-                    return;
-                }
+                transform.localPosition = m_oldPosition;
             }
-
-            // if no valid slot found just reset position
-            transform.localPosition = m_oldPosition;
         }
 
         public int Id => m_itemData.id;
