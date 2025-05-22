@@ -54,7 +54,15 @@ namespace GameCore
                 item.transform.SetParent(null);
                 if (m_slotData.itemsLists.Count > 0)
                 {
-                    m_slotData.itemsLists[0] = -1;
+                    if (m_slotData.itemsLists.Count == 1)
+                    {
+                        m_slotData.itemsLists[0] = -1;
+                    }
+                    else
+                    {
+                        m_slotData.itemsLists[0] = m_slotData.itemsLists[1];
+                        m_slotData.itemsLists.RemoveAt(1);
+                    }
                 }
                 RearrangeItems();
                 UpdateTopItemSlotVisibility();
