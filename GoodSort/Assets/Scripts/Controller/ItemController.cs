@@ -93,7 +93,10 @@ namespace GameCore
             float minDist = m_snapDistance;
             foreach (var slot in m_snapSlots)
             {
-                float dist = Vector3.Distance(slot.transform.position, transform.position);
+                // Measure distance to the top item slot position so snapping
+                // aligns with the actual visual location of the item placeholder
+                Vector3 slotPos = slot.TopItemSlot != null ? slot.TopItemSlot.transform.position : slot.transform.position;
+                float dist = Vector3.Distance(slotPos, transform.position);
                 if (dist <= minDist)
                 {
                     minDist = dist;
