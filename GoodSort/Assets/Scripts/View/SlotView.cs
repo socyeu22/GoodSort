@@ -1,5 +1,6 @@
 using UnityEngine;
 using DefaultNamespace;
+using System.Collections.Generic;
 
 namespace GameCore
 {
@@ -151,7 +152,25 @@ namespace GameCore
             }
         }
 
-        private void UpdateTopItemSlot()
+        public void SetTopItemSlotId(int itemId)
+        {
+            if (m_slotData.itemsLists == null)
+            {
+                m_slotData.itemsLists = new List<int> { itemId };
+            }
+            else if (m_slotData.itemsLists.Count == 0)
+            {
+                m_slotData.itemsLists.Add(itemId);
+            }
+            else
+            {
+                m_slotData.itemsLists[0] = itemId;
+            }
+
+            UpdateTopItemSlot();
+        }
+
+        public void UpdateTopItemSlot()
         {
             if (m_topItemSlot == null)
             {
