@@ -61,19 +61,21 @@ namespace GameCore
 
             Vector2Int startPos = m_curShelf.Position;
 
-            // Find nearest slot that has MidSlotView
+            // Find nearest available slot based on top item id and shelf type
             MidSlotView nearestSlot = null;
             float minDist = m_snapDistance;
             foreach (var slot in FindObjectsOfType<MidSlotView>())
             {
+                if (!slot.CanSnap(Id))
+                {
+                    continue;
+                }
+
                 float dist = Vector3.Distance(transform.position, slot.transform.position);
                 if (dist <= minDist)
                 {
-                    if (slot.CanSnap(Id))
-                    {
-                        minDist = dist;
-                        nearestSlot = slot;
-                    }
+                    minDist = dist;
+                    nearestSlot = slot;
                 }
             }
 
