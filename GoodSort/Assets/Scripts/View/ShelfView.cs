@@ -63,8 +63,9 @@ namespace GameCore
             var itemPrefab = GameConfig.Instance.prefabConfig.itemPrefab;
             // Init Item - Add to List
 
-            foreach (var slotData in shelfData.slotDatas)
+            for (var slotIndex = 0; slotIndex < shelfData.slotDatas.Count; slotIndex++)
             {
+                var slotData = shelfData.slotDatas[slotIndex];
                 SlotView targetSlot;
                 if (shelfData.shelfType == ShelfType.Dispenser && m_midSlot != null)
                 {
@@ -86,6 +87,9 @@ namespace GameCore
                     var itemData = GameConfig.Instance.itemDataConfig.GetItemDataByID(items);
                     var item = Instantiate(itemPrefab, targetSlot.transform);
                     item.transform.localPosition = Vector3.zero;
+                    // Name item for easier tracking in hierarchy
+                    string namePrefix = i == 0 ? "TopItem" : $"Item_Index{i}";
+                    item.name = $"{namePrefix}_Slot{slotIndex}_ID{itemData.id}";
                     var controller = item.GetComponent<ItemController>();
                     controller.InitItem(itemData, i + 1, this, targetSlot, onStageBoardChange);
                     if (!m_items.ContainsKey(i))
