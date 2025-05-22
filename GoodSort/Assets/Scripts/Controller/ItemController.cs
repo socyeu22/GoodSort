@@ -59,6 +59,12 @@ namespace GameCore
             m_isDragging = false;
             m_view.OnDragEnd(m_layerIndex);
 
+            if (m_curShelf == null)
+            {
+                transform.localPosition = m_oldPosition;
+                return;
+            }
+
             Vector2Int startPos = m_curShelf.Position;
 
             // Find nearest available slot based on top item id and shelf type
