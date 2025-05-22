@@ -40,7 +40,7 @@ namespace GameCore
 
         private void BeginDrag(Vector3 pointerWorldPosition)
         {
-            if (LayerIndex != 1)
+            if (m_curSlot == null || m_curSlot.TopItemSlot != gameObject)
             {
                 return;
             }
