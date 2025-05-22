@@ -82,25 +82,19 @@ namespace GameCore
             if (nearestSlot != null)
             {
                 ShelfView targetShelf = nearestSlot.GetComponentInParent<ShelfView>();
-                if (targetShelf != null)
+                if (targetShelf != null && m_curSlot != null)
                 {
-                    var oldShelf = m_curShelf;
-                    var oldSlot = m_curSlot;
-                    oldShelf.RemoveFromShelf(this, oldSlot);
-
-                    if (targetShelf.TryAddToShelf(this, nearestSlot))
+                    if (nearestSlot.TopItemSlotId == -1)
                     {
+                        int movedId = m_curSlot.TopItemSlotId;
+                        m_curSlot.SetTopItemSlotId(-1);
+                        nearestSlot.SetTopItemSlotId(movedId);
                         m_curShelf = targetShelf;
-                        m_curShelfCollider = targetShelf;
-                        m_curSlotCollider = nearestSlot;
-                        m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
+                        m_curSlot = nearestSlot;
+                        m_updateBoardChange?.Invoke(movedId, startPos, targetShelf.Position);
+                        Destroy(gameObject);
+                        return;
                     }
-                    else
-                    {
-                        oldShelf.TryAddToShelf(this, oldSlot);
-                        transform.localPosition = m_oldPosition;
-                    }
-                    return;
                 }
             }
 
