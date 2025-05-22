@@ -154,6 +154,11 @@ namespace GameCore
 
         public void SetTopItemSlotId(int itemId)
         {
+            // Ensure the placeholder top item slot exists when updating id
+            if (m_topItemSlot == null)
+            {
+                CreateDefaultTopItemSlot();
+            }
             if (m_slotData.itemsLists == null)
             {
                 m_slotData.itemsLists = new List<int> { itemId };
@@ -174,7 +179,7 @@ namespace GameCore
         {
             if (m_topItemSlot == null)
             {
-                return;
+                CreateDefaultTopItemSlot();
             }
 
             m_topItemSlotId = TopItemId;
@@ -188,7 +193,8 @@ namespace GameCore
                 }
             }
 
-            m_topItemSlot.SetActive(m_topItemSlotId != -1);
+            // Always keep the top item slot active so it can receive snapped items
+            m_topItemSlot.SetActive(true);
         }
     }
 }
