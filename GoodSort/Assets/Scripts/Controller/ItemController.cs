@@ -105,12 +105,19 @@ namespace GameCore
             if (nearest != null)
             {
                 ShelfView targetShelf = nearest.GetComponentInParent<ShelfView>();
-                if (targetShelf != null && targetShelf.TryAddToShelf(this, nearest))
+                if (targetShelf != null)
                 {
-                    m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
-                    return;
+                    bool snapped = targetShelf.TryAddToShelf(this, nearest);
+                    Debug.Log($"Try snap to {nearest.name} - success: {snapped}");
+                    if (snapped)
+                    {
+                        m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
+                        return;
+                    }
                 }
             }
+
+            Debug.Log("Snap failed, reverting to original position");
 
             // Fallback: snap back to original shelf
             if (m_curShelf.TryAddToShelf(this, startSlot))
