@@ -282,6 +282,7 @@ namespace DefaultNamespace
                     if (originalShelf.slotDatas != null && originalShelf.slotDatas.Count == 1 && originalShelf.slotDatas[0]?.itemsLists != null) newShelf.slotDatas.Add(new SlotData { itemsLists = new List<int>(originalShelf.slotDatas[0].itemsLists) });
                     else { Debug.LogError($"Dispenser shelf at pos {originalShelf.position} (index {i}) has invalid data."); newShelf.slotDatas.Add(new SlotData()); }
                 }
+                newShelf.UpdateTopItemIds();
                 finalShelfList.Add(newShelf);
             }
             return finalShelfList;
@@ -298,6 +299,7 @@ namespace DefaultNamespace
                  } else if (originalShelf.shelfType == ShelfType.Normal) {
                      for(int h=0; h<3; h++) { var items = new List<int>(numberOfLayersForEmptyNormal); for(int k=0; k<numberOfLayersForEmptyNormal; k++) items.Add(-1); newShelf.slotDatas.Add(new SlotData{ itemsLists = items }); }
                  }
+                 newShelf.UpdateTopItemIds();
                  finalShelfList.Add(newShelf);
              }
              return finalShelfList;
