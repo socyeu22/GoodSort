@@ -7,6 +7,12 @@ namespace GameCore
     {
         [SerializeField] private SlotData m_slotData = new SlotData();
         [SerializeField] private GameObject m_topItemSlot;
+        private ItemController m_topItemController;
+        [SerializeField] private int m_topItemSlotId = -1;
+        /// <summary>
+        ///     Item id currently shown by the TopItemSlot. -1 if empty.
+        /// </summary>
+        public int TopItemSlotId => m_topItemSlotId;
         public SlotData SlotData
         {
             get => m_slotData;
@@ -44,7 +50,7 @@ namespace GameCore
                 m_slotData.itemsLists[0] = item.Id;
             }
 
-            UpdateTopItemSlotVisibility();
+            UpdateTopItemSlot();
         }
 
         public bool RemoveItem(ItemController item)
@@ -65,7 +71,7 @@ namespace GameCore
                     }
                 }
                 RearrangeItems();
-                UpdateTopItemSlotVisibility();
+                UpdateTopItemSlot();
                 return true;
             }
             return false;
@@ -86,46 +92,69 @@ namespace GameCore
         private void Awake()
         {
             CreateDefaultTopItemSlot();
+            UpdateTopItemSlot();
         }
 
         private void Start()
         {
-            UpdateTopItemSlotVisibility();
+            UpdateTopItemSlot();
         }
 
         private void CreateDefaultTopItemSlot()
         {
-            if (m_topItemSlot != null)
+            if (m_topItemSlot == null)
             {
-                return;
+                foreach (Transform child in transform)
+                {
+                    if (child.name == "TopItemSlot")
+                    {
+                        m_topItemSlot = child.gameObject;
+                        break;
+                    }
+                }
             }
 
-            var prefab = GameConfig.Instance.prefabConfig.itemPrefab;
-            if (prefab == null)
+            if (m_topItemSlot == null)
             {
-                return;
+                var prefab = GameConfig.Instance.prefabConfig.itemPrefab;
+                if (prefab == null)
+                {
+                    return;
+                }
+
+                var item = Instantiate(prefab, transform);
+                item.transform.localPosition = Vector3.zero;
+                item.gameObject.name = "TopItemSlot";
+                m_topItemSlot = item.gameObject;
             }
 
-            var item = Instantiate(prefab, transform);
-            item.transform.localPosition = Vector3.zero;
-            item.gameObject.name = "TopItemSlot";
-
-            var controller = item.GetComponent<ItemController>();
-            if (controller != null)
+            m_topItemController = m_topItemSlot.GetComponent<ItemController>();
+            if (m_topItemController != null)
             {
                 var dummy = new ItemData { id = -1, visualType = ItemVisualType.FullDisplay };
-                controller.InitItem(dummy, 1, null, this, null);
+                m_topItemController.InitItem(dummy, 1, null, this, null);
             }
-
-            m_topItemSlot = item.gameObject;
         }
 
-        private void UpdateTopItemSlotVisibility()
+        private void UpdateTopItemSlot()
         {
-            if (m_topItemSlot != null)
+            if (m_topItemSlot == null)
             {
-                m_topItemSlot.SetActive(TopItemId != -1);
+                return;
             }
+
+            m_topItemSlotId = TopItemId;
+
+            if (m_topItemController != null && m_topItemSlotId != -1)
+            {
+                var data = GameConfig.Instance.itemDataConfig.GetItemDataByID(m_topItemSlotId);
+                if (data != null)
+                {
+                    m_topItemController.InitItem(data, 1, null, this, null);
+                }
+            }
+
+            m_topItemSlot.SetActive(m_topItemSlotId != -1);
         }
     }
 }
