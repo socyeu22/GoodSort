@@ -20,8 +20,22 @@ namespace GameCore
 
         [SerializeField] private int m_layerIndex;
         [SerializeField] private float m_snapDistance = 1f;
+        private readonly System.Collections.Generic.List<SlotView> m_snapSlots = new System.Collections.Generic.List<SlotView>();
         private Vector3 m_oldPosition;
         private bool m_isDragging;
+
+        private void CollectSnapSlots()
+        {
+            m_snapSlots.Clear();
+            var allSlots = FindObjectsOfType<SlotView>();
+            foreach (var slot in allSlots)
+            {
+                if (slot.IsTopSlotAvailable)
+                {
+                    m_snapSlots.Add(slot);
+                }
+            }
+        }
 
         private void BeginDrag(Vector3 pointerWorldPosition)
         {
@@ -29,6 +43,8 @@ namespace GameCore
             {
                 return;
             }
+
+            CollectSnapSlots();
 
             Vector3 pos = pointerWorldPosition;
             pos.z = 0f;
@@ -71,12 +87,28 @@ namespace GameCore
             // Temporarily remove from current shelf so the slot becomes available
             m_curShelf.RemoveFromShelf(this);
 
-            // Try snap to shelf we are currently colliding with first
-            ShelfView targetShelf = m_curShelfCollider;
-            if (targetShelf != null && targetShelf.TrySnapItem(this))
+            // Find nearest available top slot collected at drag start
+            SlotView nearest = null;
+            float minDist = m_snapDistance;
+            foreach (var slot in m_snapSlots)
             {
-                m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
-                return;
+                float dist = Vector3.Distance(slot.transform.position, transform.position);
+                if (dist <= minDist)
+                {
+                    minDist = dist;
+                    nearest = slot;
+                }
+            }
+            m_snapSlots.Clear();
+
+            if (nearest != null)
+            {
+                ShelfView targetShelf = nearest.GetComponentInParent<ShelfView>();
+                if (targetShelf != null && targetShelf.TryAddToShelf(this, nearest))
+                {
+                    m_updateBoardChange?.Invoke(Id, startPos, targetShelf.Position);
+                    return;
+                }
             }
 
             // Fallback: snap back to original shelf
