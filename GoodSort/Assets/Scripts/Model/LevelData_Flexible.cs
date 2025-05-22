@@ -46,6 +46,7 @@ public class LevelData_Flexible : ScriptableObject
         if (generatedResult != null)
         {
             this.shelfList = generatedResult;
+            CleanupSlotData();
             Debug.Log($"LevelData Info: Level data generation successful! Final layers (approx): {genLevelAlgorithm.finalNumberOfLayers}");
             #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this);
@@ -149,5 +150,21 @@ public class LevelData_Flexible : ScriptableObject
             return itemID == -1 ? "-" : itemID.ToString();
         }
         return " ";
+    }
+
+    /// <summary>
+    /// Sau khi dữ liệu level được tạo, loại bỏ các giá trị -1 ở các layer từ index 1 trở đi của mọi SlotData.
+    /// </summary>
+    private void CleanupSlotData()
+    {
+        if (shelfList == null) return;
+        foreach (var shelf in shelfList)
+        {
+            if (shelf.slotDatas == null) continue;
+            foreach (var slot in shelf.slotDatas)
+            {
+                slot?.RemoveNegativeFromIndexOne();
+            }
+        }
     }
 }
