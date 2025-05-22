@@ -97,6 +97,21 @@ namespace GameCore
 
         private void Start()
         {
+            // If a real item was spawned for the top layer, use it as the top item slot
+            foreach (Transform child in transform)
+            {
+                if (child.gameObject == m_topItemSlot) continue;
+                var controller = child.GetComponent<ItemController>();
+                if (controller != null && controller.Id == TopItemId && TopItemId != -1)
+                {
+                    Destroy(m_topItemSlot);
+                    m_topItemSlot = child.gameObject;
+                    m_topItemController = controller;
+                    m_topItemSlot.name = "TopItemSlot";
+                    break;
+                }
+            }
+
             UpdateTopItemSlot();
         }
 
