@@ -5,6 +5,7 @@ namespace GameCore
     public class SlotView : MonoBehaviour
     {
         [SerializeField] private SlotData m_slotData = new SlotData();
+        [SerializeField] private GameObject m_topItemSlot;
         public SlotData SlotData
         {
             get => m_slotData;
@@ -41,6 +42,8 @@ namespace GameCore
             {
                 m_slotData.itemsLists[0] = item.Id;
             }
+
+            UpdateTopItemSlotVisibility();
         }
 
         public bool RemoveItem(ItemController item)
@@ -53,6 +56,7 @@ namespace GameCore
                     m_slotData.itemsLists[0] = -1;
                 }
                 RearrangeItems();
+                UpdateTopItemSlotVisibility();
                 return true;
             }
             return false;
@@ -67,6 +71,19 @@ namespace GameCore
                 {
                     item.LayerIndex = i + 1;
                 }
+            }
+        }
+
+        private void Start()
+        {
+            UpdateTopItemSlotVisibility();
+        }
+
+        private void UpdateTopItemSlotVisibility()
+        {
+            if (m_topItemSlot != null)
+            {
+                m_topItemSlot.SetActive(TopItemId != -1);
             }
         }
     }
