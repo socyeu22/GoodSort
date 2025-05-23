@@ -3,7 +3,7 @@
 Dưới đây là bản mô tả ngắn gọn về cách ba thành phần này hoạt động theo mô hình MVC trong dự án *GoodSort*.
 
 ## ItemData (Model)
-`ItemData` nằm trong thư mục **Model** và chỉ chứa dữ liệu về một item: ID của item và cách hiển thị (`ItemVisualType`). Lớp này không xử lý việc vẽ hay tương tác. Những hệ thống khác sẽ truy cập nó để đọc trạng thái của item một cách độc lập với UI.
+`ItemData` nằm trong thư mục **Model**. Ngoài các trường dữ liệu như ID và kiểu hiển thị (`ItemVisualType`), lớp này còn cung cấp một số logic cơ bản (ví dụ: trả về `Sprite` tương ứng từ `ItemIconConfig` và thuộc tính kiểm tra chế độ hiển thị). `ItemData` không trực tiếp xử lý việc vẽ hay tương tác UI, nhưng các lớp khác có thể dựa vào những thuộc tính này để hiển thị đúng thông tin.
 
 ## ItemView (View)
 `ItemView` thuộc thư mục **View**. Script này quản lý hình ảnh item trên scene thông qua `SpriteRenderer` và chỉ xử lý việc hiển thị. Các thao tác kéo/thả và cập nhật dữ liệu đã được chuyển sang `ItemController`.

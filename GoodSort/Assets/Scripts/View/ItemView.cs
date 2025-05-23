@@ -15,8 +15,8 @@ namespace GameCore
         {
             if (m_icon != null)
             {
-                m_icon.sprite = GameConfig.Instance.itemIconConfig.GetItemIconByID(data.id);
-                m_icon.enabled = data.visualType == ItemVisualType.FullDisplay;
+                m_icon.sprite = data.Icon;
+                m_icon.enabled = data.IsFullDisplay;
             }
         }
 
