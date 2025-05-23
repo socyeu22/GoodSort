@@ -73,7 +73,7 @@ namespace GameCore
                 var item = transform.GetChild(i).GetComponent<ItemController>();
                 if (item != null)
                 {
-                    item.LayerIndex = i + 1;
+                    item.SetLayer(i + 1, i == 0);
                 }
             }
         }

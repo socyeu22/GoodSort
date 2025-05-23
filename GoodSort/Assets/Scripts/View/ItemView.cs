@@ -9,7 +9,7 @@ namespace GameCore
         [SerializeField] private SpriteRenderer m_icon;
         [SerializeField] private Collider2D m_collider;
         [SerializeField] private float m_heightOffset;
-        [SerializeField] private int m_layerIndex;
+        public bool isTopItem;
 
         public void SetupView(ItemData data)
         {
@@ -20,16 +20,16 @@ namespace GameCore
             }
         }
 
-        public void SetLayer(int layerIndex)
+        public void SetLayer(int layerIndex, bool isTop)
         {
-            m_layerIndex = layerIndex;
+            isTopItem = isTop;
             if (m_icon != null)
             {
-                m_icon.color = layerIndex == 1 ? Color.white : Color.gray;
+                m_icon.color = isTopItem ? Color.white : Color.gray;
                 m_icon.sortingOrder = 10 - layerIndex;
             }
             transform.localPosition = new Vector3(transform.localPosition.x, (layerIndex - 1) * m_heightOffset, 0f);
-            SetActiveItem(layerIndex == 1);
+            SetActiveItem(isTopItem);
         }
 
 

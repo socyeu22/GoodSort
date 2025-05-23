@@ -178,7 +178,7 @@ namespace GameCore
             {
                 foreach (var item in itemLayer.Value)
                 {
-                    item.LayerIndex = itemLayer.Key + 1;
+                    item.SetLayer(itemLayer.Key + 1, itemLayer.Key == 0);
                 }
             }
         }
