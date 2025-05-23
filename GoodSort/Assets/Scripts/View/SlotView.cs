@@ -41,24 +41,6 @@ namespace GameCore
         /// </summary>
         public bool IsTopSlotAvailable => TopItemId == -1;
 
-        public virtual void AddItem(ItemController item)
-        {
-            item.transform.SetParent(transform);
-            // Reset local position so the item snaps exactly to the slot
-            item.transform.localPosition = Vector3.zero;
-            item.LayerIndex = transform.childCount;
-
-            if (m_slotData.itemsLists.Count == 0)
-            {
-                m_slotData.itemsLists.Add(item.Id);
-            }
-            else
-            {
-                m_slotData.itemsLists[0] = item.Id;
-            }
-
-            UpdateTopItemSlot();
-        }
 
         public bool RemoveItem(ItemController item)
         {

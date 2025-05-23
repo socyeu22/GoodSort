@@ -32,21 +32,6 @@ namespace GameCore
             SetActiveItem(layerIndex == 1);
         }
 
-        public void OnDragStart()
-        {
-            if (m_icon != null)
-            {
-                m_icon.sortingOrder = 100;
-            }
-        }
-
-        public void OnDragEnd(int layerIndex)
-        {
-            if (m_icon != null)
-            {
-                m_icon.sortingOrder = 10 - layerIndex;
-            }
-        }
 
         private void SetActiveItem(bool isActive)
         {
