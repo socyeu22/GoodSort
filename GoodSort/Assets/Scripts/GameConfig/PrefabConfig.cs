@@ -8,5 +8,6 @@ namespace DefaultNamespace
     {
         public ItemController itemPrefab;
         public ShelfView shelfPrefab;
+        public SlotView slotView;
     }
 }
