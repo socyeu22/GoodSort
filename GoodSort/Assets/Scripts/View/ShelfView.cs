@@ -127,49 +127,6 @@ namespace GameCore
             }
         }
 
-        public bool TryAddToShelf(ItemController item, SlotView slot)
-        {
-            if (TopLayer.Count == MaxItemsPerLayer)
-            {
-                return false;
-            }
-
-            if (slot == null || !m_slots.Contains(slot))
-            {
-                return false;
-            }
-
-            if (!m_availableSlots.Contains(slot))
-            {
-                return false;
-            }
-
-            slot.AddItem(item);
-            item.SetShelfAndSlot(this, slot);
-            TopLayer.Add(item);
-            MarkSlotUnavailable(slot);
-
-            return true;
-        }
-
-        public bool TryAddToShelf(ItemController item)
-        {
-            if (TopLayer.Count == MaxItemsPerLayer)
-            {
-                return false;
-            }
-
-            SlotView[] order = { m_midSlot, m_rightSlot, m_leftSlot };
-            foreach (var slot in order)
-            {
-                if (slot != null && m_availableSlots.Contains(slot))
-                {
-                    return TryAddToShelf(item, slot);
-                }
-            }
-
-            return false;
-        }
 
         public void RemoveFromShelf(ItemController item)
         {
@@ -226,43 +183,6 @@ namespace GameCore
             }
         }
 
-        public SlotView GetNearestAvailableSlot(Vector3 worldPos)
-        {
-            if (m_shelfType != ShelfType.Normal)
-            {
-                return null;
-            }
-
-            SlotView nearest = null;
-            float minDist = m_offsetDistance;
-            foreach (var slot in m_availableSlots)
-            {
-                float dist = Vector3.Distance(slot.transform.position, worldPos);
-                if (dist <= minDist)
-                {
-                    minDist = dist;
-                    nearest = slot;
-                }
-            }
-
-            return nearest;
-        }
-
-        public bool TryGetSnapSlot(Vector3 worldPos, out SlotView slot)
-        {
-            slot = GetNearestAvailableSlot(worldPos);
-            return slot != null;
-        }
-
-        public bool TrySnapItem(ItemController item)
-        {
-            var slot = GetNearestAvailableSlot(item.transform.position);
-            if (slot == null)
-            {
-                return false;
-            }
-            return TryAddToShelf(item, slot);
-        }
         
     }
 }
