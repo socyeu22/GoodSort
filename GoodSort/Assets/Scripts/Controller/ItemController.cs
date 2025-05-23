@@ -14,23 +14,11 @@ namespace GameCore
         private SlotView m_curSlot;
         private Action<int, Vector2Int, Vector2Int> m_updateBoardChange;
 
-        [SerializeField] private int m_layerIndex;
-
 
         public int Id => m_itemData.id;
         public SlotView CurrentSlot => m_curSlot;
         public ShelfView CurrentShelf => m_curShelf;
 
-        public int LayerIndex
-        {
-            get => m_layerIndex;
-            set
-            {
-                if (m_layerIndex == value) return;
-                m_layerIndex = value;
-                m_view.SetLayer(m_layerIndex);
-            }
-        }
 
         private void Awake()
         {
@@ -44,8 +32,13 @@ namespace GameCore
             m_itemData = data;
             m_curShelf = shelfView;
             m_curSlot = slotView;
-            LayerIndex = layerIndex;
             m_view.SetupView(data);
+            SetLayer(layerIndex, layerIndex == 1);
+        }
+
+        public void SetLayer(int layerIndex, bool isTopItem)
+        {
+            m_view.SetLayer(layerIndex, isTopItem);
         }
 
 
